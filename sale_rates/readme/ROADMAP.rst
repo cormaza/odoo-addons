@@ -1,0 +1,1 @@
+- Kit products, delivered is not computed correctly in odoo base
