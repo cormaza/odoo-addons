@@ -48,13 +48,15 @@ class SaleOrder(models.Model):
                 shipped_rate = (
                     min((qty_delivered / product_uom_qty) * 100, 100.0)
                     if product_uom_qty
-                    else 0.0
+                    else 100.0
                 )
             record.shipped_rate = shipped_rate
 
     @api.depends(
         "force_full_rated",
         "order_line.qty_invoiced",
+        "order_line.qty_to_invoice",
+        "order_line.qty_delivered",
         "order_line.invoice_lines.move_id.state",
         "order_line.invoice_lines.quantity",
     )
@@ -63,19 +65,15 @@ class SaleOrder(models.Model):
             if record.force_full_rated:
                 invoiced_rate = 100.0
             else:
-                product_uom_qty = sum(
-                    record.order_line.filtered(
-                        lambda x: x.product_id.type == "product"
-                    ).mapped("product_uom_qty")
-                )
-                qty_invoiced = sum(
-                    record.order_line.filtered(
-                        lambda x: x.product_id.type == "product"
-                    ).mapped("qty_invoiced")
-                )
-                invoiced_rate = (
-                    min((qty_invoiced / product_uom_qty) * 100, 100.0)
-                    if product_uom_qty
-                    else 0.0
-                )
+                product_uom_qty = sum(record.order_line.mapped("product_uom_qty"))
+                qty_to_invoice = sum(record.order_line.mapped("qty_to_invoice"))
+                qty_invoiced = sum(record.order_line.mapped("qty_invoiced"))
+                if qty_to_invoice > 0:
+                    invoiced_rate = (
+                        min((qty_invoiced / product_uom_qty) * 100, 100.0)
+                        if product_uom_qty
+                        else 100.0
+                    )
+                else:
+                    invoiced_rate = 100.0
             record.invoiced_rate = invoiced_rate
