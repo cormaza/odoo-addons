@@ -15,3 +15,10 @@ class UtmCampaign(models.Model):
         "mail.thread",
         "mail.activity.mixin",
     ]
+
+
+class UtmSource(models.Model):
+
+    _inherit = "utm.source"
+
+    active = fields.Boolean(string="Active?", default=True)
