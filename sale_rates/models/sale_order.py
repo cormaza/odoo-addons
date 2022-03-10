@@ -8,10 +8,10 @@ class SaleOrder(models.Model):
     _inherit = "sale.order"
 
     shipped_rate = fields.Float(
-        compute="_compute_shipped_rate", string="Invoiced (%)", store=True, copy=False
+        compute="_compute_shipped_rate", string="Shipped (%)", store=True, copy=False
     )
     invoiced_rate = fields.Float(
-        compute="_compute_invoiced_rate", string="Delivered (%)", store=True, copy=False
+        compute="_compute_invoiced_rate", string="Invoiced (%)", store=True, copy=False
     )
     force_full_rated = fields.Boolean(
         string="Force full invoiced and delivered rated", required=False
