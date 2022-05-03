@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <template
+            id="assets_backend"
+            name="mail activity default user crm assets"
+            inherit_id="web.assets_backend"
+        >
+            <xpath expr="." position="inside">
+                <script
+                    type="text/javascript"
+                    src="/mail_activity_default_user_crm/static/src/js/activity.js"
+                />
+            </xpath>
+        </template>
+    </data>
+</odoo>
