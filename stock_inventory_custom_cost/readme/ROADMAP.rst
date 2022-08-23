@@ -1,0 +1,1 @@
+- This custom cost only works for inventory adjustment that push stock into company
