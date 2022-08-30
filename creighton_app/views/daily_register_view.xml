@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="creighton_daily_record_view_tree" model="ir.ui.view">
+        <field name="name">creighton_daily_record_view_tree</field>
+        <field name="model">creighton.daily.register</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="date" />
+                <field name="user_id" />
+                <field name="day_type" />
+                <field name="menstrual_type" />
+                <field name="elasticity_type" />
+                <field name="color_type" />
+                <field name="frequency_type" />
+            </tree>
+        </field>
+    </record>
+    <record id="creighton_daily_record_view_form" model="ir.ui.view">
+        <field name="name">creighton_daily_record_view_form</field>
+        <field name="model">creighton.daily.register</field>
+        <field name="arch" type="xml">
+            <form string="Creighton Daily Register">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="date" />
+                            <field name="user_id" />
+                            <field name="day_type" />
+                            <field
+                                name="menstrual_type"
+                                attrs="{'invisible': [('day_type', '!=', 'red')], 'required': [('day_type', '=', 'red')]}"
+                            />
+                            <field
+                                name="elasticity_type"
+                                attrs="{'invisible': [('day_type', 'in', ('green', 'g_peak_1', 'g_peak_2', 'g_peak_3'))],
+                            'required': [('day_type', 'not in', ('green', 'g_peak_1', 'g_peak_2', 'g_peak_3', 'red'))]
+                            }"
+                            />
+                            <field
+                                name="color_type"
+                                attrs="{'invisible': [('day_type', 'in', ('green', 'g_peak_1', 'g_peak_2', 'g_peak_3'))],
+                            'required': [('day_type', 'not in', ('green', 'g_peak_1', 'g_peak_2', 'g_peak_3', 'red'))]
+                            }"
+                            />
+                            <field
+                                name="frequency_type"
+                                attrs="{'invisible': [('day_type', 'in', ('green', 'g_peak_1', 'g_peak_2', 'g_peak_3'))],
+                            'required': [('day_type', 'not in', ('green', 'g_peak_1', 'g_peak_2', 'g_peak_3', 'red'))]
+                            }"
+                            />
+                        </group>
+                        <group>
+                            <field name="day_type_helper" widget="creighton_widget" />
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field
+                        name="message_follower_ids"
+                        widget="mail_followers"
+                        groups="base.group_user"
+                    />
+                    <field name="activity_ids" widget="mail_activity" />
+                    <field name="message_ids" widget="mail_thread" />
+                </div>
+            </form>
+        </field>
+    </record>
+    <record id="creighton_daily_record_view_search" model="ir.ui.view">
+        <field name="name">Creighton Daily Register</field>
+        <field name="model">creighton.daily.register</field>
+        <field name="arch" type="xml">
+            <search string="Creighton Daily Register">
+                <field name="date" />
+                <field name="user_id" />
+            </search>
+        </field>
+    </record>
+    <record id="creighton_daily_record_view_calendar" model="ir.ui.view">
+        <field name="name">Creighton Daily Register</field>
+        <field name="model">creighton.daily.register</field>
+        <field name="arch" type="xml">
+            <calendar
+                date_start="date"
+                string="Daily Register"
+                mode="month"
+                color="user_id"
+                hide_time="true"
+                quick_add="False"
+            >
+                <field name="date" />
+                <field name="user_id" />
+                <field name="day_type" invisible="1" />
+                <field name="day_type_helper" widget="creighton_widget" />
+                <field
+                    name="menstrual_type"
+                    attrs="{'invisible': [('day_type', '!=', 'red')]}"
+                />
+                <field
+                    name="elasticity_type"
+                    attrs="{'invisible': [('day_type', 'in', ('green', 'g_peak_1', 'g_peak_2', 'g_peak_3'))]
+
+                            }"
+                />
+                <field
+                    name="color_type"
+                    attrs="{'invisible': [('day_type', 'in', ('green', 'g_peak_1', 'g_peak_2', 'g_peak_3'))]
+
+                            }"
+                />
+                <field
+                    name="frequency_type"
+                    attrs="{'invisible': [('day_type', 'in', ('green', 'g_peak_1', 'g_peak_2', 'g_peak_3'))]
+
+                            }"
+                />
+            </calendar>
+        </field>
+    </record>
+    <record id="creighton_daily_record_action" model="ir.actions.act_window">
+        <field name="name">Creighton Daily Register</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">creighton.daily.register</field>
+        <field name="view_mode">tree,form,calendar</field>
+    </record>
+    <menuitem
+        id="manu_creighton_daily_record_action"
+        parent="menu_creighton_app"
+        action="creighton_daily_record_action"
+        sequence="10"
+    />
+</odoo>
