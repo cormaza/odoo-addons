@@ -76,6 +76,45 @@
             </search>
         </field>
     </record>
+    <record id="creighton_daily_record_view_kanban" model="ir.ui.view">
+        <field name="name">creighton.daily.register.kanban</field>
+        <field name="model">creighton.daily.register</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_mobile">
+                <field name="date" />
+                <field name="user_id" />
+                <field name="day_type" />
+                <field name="day_type_helper" />
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_global_click">
+                            <div class="row mb4">
+                                <div class="col-6">
+                                    <strong>
+                                        <span>
+                                            <t t-esc="record.date.value" />
+                                        </span>
+                                    </strong>
+                                </div>
+                                <div class="col-6 text-center">
+                                    <field
+                                        name="day_type_helper"
+                                        widget="creighton_widget"
+                                    />
+                                    <br />
+                                    <strong>
+                                        <span>
+                                            <field name="display_name" />
+                                        </span>
+                                    </strong>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
     <record id="creighton_daily_record_view_calendar" model="ir.ui.view">
         <field name="name">Creighton Daily Register</field>
         <field name="model">creighton.daily.register</field>
@@ -121,7 +160,7 @@
         <field name="name">Creighton Daily Register</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">creighton.daily.register</field>
-        <field name="view_mode">tree,form,calendar</field>
+        <field name="view_mode">kanban,tree,form,calendar</field>
     </record>
     <menuitem
         id="manu_creighton_daily_record_action"
