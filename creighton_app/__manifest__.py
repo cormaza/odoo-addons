@@ -8,8 +8,8 @@
     "license": "AGPL-3",
     "depends": ["base", "contacts", "mail"],
     "data": [
-        "security/ir.model.access.csv",
         "security/groups.xml",
+        "security/ir.model.access.csv",
         "views/assets.xml",
         "views/root_menu.xml",
         "views/daily_register_view.xml",
