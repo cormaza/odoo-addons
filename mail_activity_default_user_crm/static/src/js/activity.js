@@ -1,4 +1,4 @@
-odoo.define("mail.activity.default.user.crm", function(require) {
+odoo.define("mail.activity.default.user.crm", function (require) {
     "use strict";
     var field_registry = require("web.field_registry");
     var core = require("web.core");
@@ -6,14 +6,14 @@ odoo.define("mail.activity.default.user.crm", function(require) {
     require("mail.Activity");
     var MailActivity = field_registry.get("mail_activity");
     MailActivity.include({
-        _openActivityForm: function(id, callback) {
+        _openActivityForm: function (id, callback) {
             var self = this;
             if (this.model === "crm.lead") {
                 return this._rpc({
                     model: "crm.lead",
                     method: "read",
                     args: [this.res_id, ["user_id"]],
-                }).then(function(result) {
+                }).then(function (result) {
                     var current_context = {
                         default_res_id: self.res_id,
                         default_res_model: self.model,
