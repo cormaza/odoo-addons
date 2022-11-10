@@ -1,6 +1,6 @@
 {
     "name": "UTM Chatter",
-    "version": "13.0.1.0.0",
+    "version": "15.0.1.0.0",
     "summary": "Add Chatter to UTM Objects",
     "category": "Hidden",
     "author": "Christopher Ormaza",
