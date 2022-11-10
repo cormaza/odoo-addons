@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-    <data>
-        <record id="calendar_event_view_form" model="ir.ui.view">
-            <field name="name">calendar_event_view_form</field>
-            <field name="model">calendar.event</field>
-            <field name="inherit_id" ref="calendar.view_calendar_event_form" />
-            <field name="arch" type="xml">
-                <xpath expr="//field[@name='alarm_ids']" position="before">
-                    <field name="optional_create_attendees" />
-                </xpath>
-            </field>
-        </record>
-    </data>
+    <record id="calendar_event_view_form" model="ir.ui.view">
+        <field name="name">calendar_event_view_form</field>
+        <field name="model">calendar.event</field>
+        <field name="inherit_id" ref="calendar.view_calendar_event_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='alarm_ids']" position="before">
+                <field name="optional_create_attendees" />
+            </xpath>
+        </field>
+    </record>
 </odoo>
