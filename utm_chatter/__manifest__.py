@@ -4,7 +4,7 @@
     "summary": "Add Chatter to UTM Objects",
     "category": "Hidden",
     "author": "Christopher Ormaza",
-    "website": "mailto://chris.ormaza@gmail.com",
+    "website": "https://github.com/cormaza/odoo-addons",
     "license": "AGPL-3",
     "depends": ["utm", "mail"],
     "data": ["views/utm_views.xml"],
