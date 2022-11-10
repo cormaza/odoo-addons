@@ -13,7 +13,7 @@ class TestCalendarOptionalAttendees(TransactionCase):
     def test_01_optional_attendees(self):
         new_event_form = Form(self.CalendarEvent)
         new_event_form.name = "Test Event"
-        new_event_form.start_datetime = fields.Datetime.now()
+        new_event_form.start = fields.Datetime.now()
         new_event_form.partner_ids.add(self.partner_1)
         new_event_form.partner_ids.add(self.partner_2)
         new_event_form.partner_ids.add(self.partner_3)
@@ -22,7 +22,7 @@ class TestCalendarOptionalAttendees(TransactionCase):
 
         new_event_form = Form(self.CalendarEvent)
         new_event_form.name = "Test Event"
-        new_event_form.start_datetime = fields.Datetime.now()
+        new_event_form.start = fields.Datetime.now()
         new_event_form.partner_ids.add(self.partner_1)
         new_event_form.partner_ids.add(self.partner_2)
         new_event_form.partner_ids.add(self.partner_3)
@@ -32,7 +32,7 @@ class TestCalendarOptionalAttendees(TransactionCase):
 
         new_event_form = Form(self.CalendarEvent)
         new_event_form.name = "Test Event"
-        new_event_form.start_datetime = fields.Datetime.now()
+        new_event_form.start = fields.Datetime.now()
         new_event_form.partner_ids.add(self.partner_1)
         new_event_form.partner_ids.add(self.partner_2)
         new_meeting = new_event_form.save()
@@ -42,7 +42,7 @@ class TestCalendarOptionalAttendees(TransactionCase):
 
         new_event_form = Form(self.CalendarEvent)
         new_event_form.name = "Test Event"
-        new_event_form.start_datetime = fields.Datetime.now()
+        new_event_form.start = fields.Datetime.now()
         new_event_form.partner_ids.add(self.partner_1)
         new_event_form.partner_ids.add(self.partner_2)
         new_event_form.optional_create_attendees = False
@@ -53,7 +53,7 @@ class TestCalendarOptionalAttendees(TransactionCase):
 
         new_event_form = Form(self.CalendarEvent)
         new_event_form.name = "Test Event"
-        new_event_form.start_datetime = fields.Datetime.now()
+        new_event_form.start = fields.Datetime.now()
         new_event_form.partner_ids.add(self.partner_1)
         new_event_form.partner_ids.add(self.partner_2)
         new_event_form.optional_create_attendees = False
