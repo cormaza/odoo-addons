@@ -1,52 +1,50 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-    <data>
-        <record id="view_order_tree" model="ir.ui.view">
-            <field name="name">sale.order.view.tree.inherit.rates</field>
-            <field name="model">sale.order</field>
-            <field name="inherit_id" ref="sale.view_order_tree" />
-            <field name="arch" type="xml">
-                <xpath expr="//field[@name='partner_id']" position="after">
-                    <field name="shipped_rate" widget="progressbar" />
-                    <field name="invoiced_rate" widget="progressbar" />
-                </xpath>
-            </field>
-        </record>
-        <record id="sale_order_view_search_inherit_sale_rates" model="ir.ui.view">
-            <field name="name">sale.order.view.search.inherit.sale.rates</field>
-            <field name="model">sale.order</field>
-            <field name="inherit_id" ref="sale.sale_order_view_search_inherit_sale" />
-            <field name="arch" type="xml">
-                <xpath expr="//filter[@name='to_invoice']" position="before">
-                    <filter
-                        name="filter_by_invoiced_partial"
-                        string="Partial Invoiced"
-                        domain="[('invoiced_rate','&gt;',0.0),('invoiced_rate','&lt;',100.0)]"
-                    />
-                    <filter
-                        name="filter_by_invoiced"
-                        string="Invoiced Total"
-                        domain="[('invoiced_rate','&gt;=',100.0)]"
-                    />
-                    <newline />
-                    <filter
-                        name="filter_by_no_received"
-                        string="Without Delivery"
-                        domain="[('shipped_rate','=',0.0)]"
-                    />
-                    <filter
-                        name="filter_by_received_partial"
-                        string="Partially Delivered"
-                        domain="[('shipped_rate','&gt;',0.0),('shipped_rate','&lt;',100.0)]"
-                    />
-                    <filter
-                        name="filter_by_received"
-                        string="Fully Delivered"
-                        domain="[('shipped_rate','&gt;=',100.0)]"
-                    />
-                    <separator />
-                </xpath>
-            </field>
-        </record>
-    </data>
+    <record id="view_order_tree" model="ir.ui.view">
+        <field name="name">sale.order.view.tree.inherit.rates</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="shipped_rate" widget="progressbar" />
+                <field name="invoiced_rate" widget="progressbar" />
+            </xpath>
+        </field>
+    </record>
+    <record id="sale_order_view_search_inherit_sale_rates" model="ir.ui.view">
+        <field name="name">sale.order.view.search.inherit.sale.rates</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.sale_order_view_search_inherit_sale" />
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='to_invoice']" position="before">
+                <filter
+                    name="filter_by_invoiced_partial"
+                    string="Partial Invoiced"
+                    domain="[('invoiced_rate','&gt;',0.0),('invoiced_rate','&lt;',100.0)]"
+                />
+                <filter
+                    name="filter_by_invoiced"
+                    string="Invoiced Total"
+                    domain="[('invoiced_rate','&gt;=',100.0)]"
+                />
+                <newline />
+                <filter
+                    name="filter_by_no_received"
+                    string="Without Delivery"
+                    domain="[('shipped_rate','=',0.0)]"
+                />
+                <filter
+                    name="filter_by_received_partial"
+                    string="Partially Delivered"
+                    domain="[('shipped_rate','&gt;',0.0),('shipped_rate','&lt;',100.0)]"
+                />
+                <filter
+                    name="filter_by_received"
+                    string="Fully Delivered"
+                    domain="[('shipped_rate','&gt;=',100.0)]"
+                />
+                <separator />
+            </xpath>
+        </field>
+    </record>
 </odoo>

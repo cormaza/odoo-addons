@@ -74,6 +74,7 @@ class TestSaleRates(SavepointCase):
             )
             .create(
                 {
+                    "journal_id": sale_order_1.invoice_ids.mapped("journal_id").id,
                     "date": fields.Date.today(),
                     "reason": "no reason",
                     "refund_method": "refund",
@@ -90,3 +91,54 @@ class TestSaleRates(SavepointCase):
         move_form.save()
         self.assertEqual(sum(sale_order_1.order_line.mapped("qty_invoiced")), 10)
         self.assertEqual(sale_order_1.invoiced_rate, 50)
+        sale_order_1.write({"force_full_rated": True})
+        self.assertEqual(sale_order_1.invoiced_rate, 100)
+
+    def _do_picking(self, picking, date, qty):
+        """Do picking with only one move on the given date."""
+        picking.action_confirm()
+        picking.action_assign()
+        picking.move_lines.quantity_done = qty
+        res = picking.button_validate()
+        if isinstance(res, dict) and res:
+            backorder_wiz_id = res["res_id"]
+            backorder_wiz = self.env["stock.backorder.confirmation"].browse(
+                [backorder_wiz_id]
+            )
+            backorder_wiz.process()
+        return True
+
+    def _make_picking_return(self, picking, quantity):
+        return_form = Form(
+            self.env["stock.return.picking"].with_context(
+                active_id=picking.id,
+                active_ids=picking.ids,
+            )
+        )
+        return_form.picking_id = picking
+        for i in range(len(return_form.product_return_moves)):
+            with return_form.product_return_moves.edit(i) as return_line:
+                return_line.quantity = quantity
+        return_wizard = return_form.save()
+        action = return_wizard.create_returns()
+        return_picking = self.env["stock.picking"].browse(action.get("res_id"))
+        self._do_picking(return_picking, fields.Datetime.now(), quantity)
+        return return_picking
+
+    def test_sale_rates_shipped(self):
+        sale_order_form = Form(self.env["sale.order"])
+        sale_order_form.partner_id = self.partner
+        with sale_order_form.order_line.new() as line_form:
+            line_form.product_id = self.product
+            line_form.product_uom_qty = 10
+            line_form.save()
+        sale_order_1 = sale_order_form.save()
+        sale_order_1.action_confirm()
+        self.assertEqual(sale_order_1.shipped_rate, 0)
+        out_picking = sale_order_1.picking_ids
+        self._do_picking(out_picking, fields.Datetime.now(), 10)
+        self.assertEqual(sale_order_1.shipped_rate, 100.0)
+        self._make_picking_return(out_picking, 3)
+        self.assertEqual(sale_order_1.shipped_rate, 70.0)
+        sale_order_1.write({"force_full_rated": True})
+        self.assertEqual(sale_order_1.shipped_rate, 100)
