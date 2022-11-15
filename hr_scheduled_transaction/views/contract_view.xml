@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="hr_contract_view_form" model="ir.ui.view">
+        <field name="name">hr.contract.form</field>
+        <field name="model">hr.contract</field>
+        <field name="inherit_id" ref="hr_contract.hr_contract_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='other']" position="after">
+                <page string="Fixed Inputs" name="fixed_inputs">
+                    <field name="fixed_inputs_ids" nolabel="1">
+                        <tree editable="bottom">
+                            <field
+                                name="payslip_input_type_id"
+                                options="{'no_create': True}"
+                            />
+                            <field name="start_date" />
+                            <field name="end_date" />
+                            <field name="day_to_apply" />
+                            <field name="amount" />
+                            <field name="type_transaction" />
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
