@@ -14,8 +14,12 @@ class HrPayslipInputType(models.Model):
         required=False,
     )
 
-    account_credit_id = fields.Many2one("account.account", string="Credit Account")
-    account_debit_id = fields.Many2one("account.account", string="Debit Account")
+    account_credit_id = fields.Many2one(
+        "account.account", string="Credit Account", company_dependent=True
+    )
+    account_debit_id = fields.Many2one(
+        "account.account", string="Debit Account", company_dependent=True
+    )
     analytic_account_id = fields.Many2one(
         "account.analytic.account", string="Analytic Account"
     )
@@ -56,8 +60,8 @@ class HrPayslipInputType(models.Model):
                 "amount_python_compute": "result = inputs.%(code)s and inputs.%(code)s.amount or 0"  # noqa: disable=B950
                 % {"code": rec.code},
                 "input_type_id": rec.id,
-                "account_credit_id": rec.account_credit_id.id,
-                "account_debit_id": rec.account_debit_id.id,
+                "account_credit": rec.account_credit_id.id,
+                "account_debit": rec.account_debit_id.id,
                 "analytic_account_id": rec.analytic_account_id.id,
                 "not_computed_in_net": rec.not_computed_in_net,
                 "sequence": rec.sequence,
@@ -79,8 +83,8 @@ class HrPayslipInputType(models.Model):
                     ),
                     "amount_python_compute": "result = inputs.%(code)s and inputs.%(code)s.amount or 0"  # noqa: disable=B950
                     % {"code": rec.code},
-                    "account_credit_id": rec.account_credit_id.id,
-                    "account_debit_id": rec.account_debit_id.id,
+                    "account_credit": rec.account_credit_id.id,
+                    "account_debit": rec.account_debit_id.id,
                     "analytic_account_id": rec.analytic_account_id.id,
                     "not_computed_in_net": rec.not_computed_in_net,
                     "sequence": rec.sequence,
