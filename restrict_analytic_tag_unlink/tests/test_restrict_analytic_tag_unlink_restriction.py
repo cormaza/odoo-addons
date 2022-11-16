@@ -4,12 +4,13 @@ from odoo.exceptions import UserError
 from odoo.tests.common import TransactionCase
 
 
-class TestRestrictAnalyticTagUnlink(TransactionCase, FakeModelLoader):
+class TestRestrictAnalyticTagUnlink(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
         cls.loader = FakeModelLoader(cls.env, cls.__module__)
         cls.loader.backup_registry()
+        cls.addClassCleanup(cls.loader.restore_registry)
         from .fake_model import FakeRestrictionTestModel
 
         cls.loader.update_registry((FakeRestrictionTestModel,))
