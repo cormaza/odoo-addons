@@ -18,5 +18,5 @@
         "views/contract_view.xml",
     ],
     "demo": [],
-    "license": "LGPL-3",
+    "license": "AGPL-3",
 }
