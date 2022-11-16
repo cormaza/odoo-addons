@@ -3,10 +3,10 @@
 
 from odoo import fields
 from odoo.tests import Form
-from odoo.tests.common import SavepointCase
+from odoo.tests.common import TransactionCase
 
 
-class TestSaleRates(SavepointCase):
+class TestSaleRates(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
