@@ -33,7 +33,7 @@ class ScheduledTransactionTest(TransactionCase):
             {
                 "employee_id": cls.employee_id.id,
                 "date_start": "2021-01-01",
-                "date_end": "2021-31-12",
+                "date_end": "2021-12-31",
                 "wage": 600.0,
                 "state": "open",
             }
