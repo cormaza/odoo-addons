@@ -31,11 +31,13 @@ class ScheduledTransactionTest(TransactionCase):
         )
         cls.contract_id = contract_model.create(
             {
+                "name": cls.employee_id.display_name,
                 "employee_id": cls.employee_id.id,
                 "date_start": "2021-01-01",
                 "date_end": "2021-12-31",
                 "wage": 600.0,
                 "state": "open",
+                "kanban_state": "normal",
             }
         )
 
