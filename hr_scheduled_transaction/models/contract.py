@@ -38,7 +38,7 @@ class HrContractFixedInputs(models.Model):
             rec_type = "input"
             if rec.payslip_input_type_id.category_id.code == "EGRE":
                 rec_type = "output"
-            rec.type_transaction = rec_type
+            rec.transaction_type = rec_type
 
     @api.constrains("day_to_apply")
     def _check_day_to_apply(self):
