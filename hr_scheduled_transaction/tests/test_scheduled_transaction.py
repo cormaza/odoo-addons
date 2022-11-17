@@ -137,7 +137,7 @@ class ScheduledTransactionTest(TransactionCase):
         new_transaction = self.fixed_transaction_model.create(
             {
                 "contract_id": self.contract_id.id,
-                "day_to_apply": 0,
+                "day_to_apply": 31,
                 "payslip_input_type_id": self.output_type_id.id,
                 "amount": 100.0,
             }
@@ -146,7 +146,7 @@ class ScheduledTransactionTest(TransactionCase):
         new_transaction = self.fixed_transaction_model.create(
             {
                 "contract_id": self.contract_id.id,
-                "day_to_apply": 0,
+                "day_to_apply": 31,
                 "payslip_input_type_id": self.input_type_id.id,
                 "amount": 100.0,
             }
