@@ -96,7 +96,7 @@ class ScheduledTransactionTest(TransactionCase):
                 }
             )
         with self.assertRaises(UserError):
-            self.fixed_transaction_model(
+            self.fixed_transaction_model.create(
                 {
                     "contract_id": self.contract_id.id,
                     "day_to_apply": 40,
@@ -105,7 +105,7 @@ class ScheduledTransactionTest(TransactionCase):
                 }
             )
         with self.assertRaises(UserError):
-            self.fixed_transaction_model(
+            self.fixed_transaction_model.create(
                 {
                     "contract_id": self.contract_id.id,
                     "day_to_apply": 0,
@@ -114,7 +114,7 @@ class ScheduledTransactionTest(TransactionCase):
                 }
             )
         with self.assertRaises(UserError):
-            self.fixed_transaction_model(
+            self.fixed_transaction_model.create(
                 {
                     "contract_id": self.contract_id.id,
                     "start_date": self.contract_id.date_start - relativedelta(days=1),
@@ -124,7 +124,7 @@ class ScheduledTransactionTest(TransactionCase):
                 }
             )
         with self.assertRaises(UserError):
-            self.fixed_transaction_model(
+            self.fixed_transaction_model.create(
                 {
                     "contract_id": self.contract_id.id,
                     "start_date": self.contract_id.date_end + relativedelta(days=1),
