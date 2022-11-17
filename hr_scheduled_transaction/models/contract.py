@@ -22,18 +22,18 @@ class HrContractFixedInputs(models.Model):
     amount = fields.Float(
         required=True,
     )
-    type_transaction = fields.Selection(
+    transaction_type = fields.Selection(
         selection=[
             ("input", "Input"),
             ("output", "Output"),
         ],
         string="Type",
-        compute="_compute_type_transaction",
+        compute="_compute_transaction_type",
         store=True,
     )
 
     @api.depends("amount", "payslip_input_type_id.category_id.code")
-    def _compute_type_transaction(self):
+    def _compute_transaction_type(self):
         for rec in self:
             rec_type = "input"
             if rec.payslip_input_type_id.category_id.code == "EGRE":
@@ -43,7 +43,7 @@ class HrContractFixedInputs(models.Model):
     @api.constrains("day_to_apply")
     def _check_day_to_apply(self):
         for rec in self:
-            if 0 > rec.day_to_apply > 31:
+            if 0 >= rec.day_to_apply > 31:
                 raise UserError(
                     _("Day to apply of fixed input %s must be between 1 or 31")
                     % (rec.payslip_input_type_id.display_name)

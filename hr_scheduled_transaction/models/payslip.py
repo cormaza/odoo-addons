@@ -213,7 +213,7 @@ class HrPayslip(models.Model):
                     lambda x: x.payslip_input_type_id.id == input_type.id
                 )
                 amount += sum(
-                    fi.type_transaction == "input" and fi.amount or fi.amount * -1
+                    fi.transaction_type == "input" and fi.amount or fi.amount * -1
                     for fi in current_fi
                 )
                 if current_input:

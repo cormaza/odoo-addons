@@ -17,7 +17,7 @@
                             <field name="end_date" />
                             <field name="day_to_apply" />
                             <field name="amount" />
-                            <field name="type_transaction" />
+                            <field name="transaction_type" />
                         </tree>
                     </field>
                 </page>
