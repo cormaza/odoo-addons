@@ -43,7 +43,7 @@ class HrContractFixedInputs(models.Model):
     @api.constrains("day_to_apply")
     def _check_day_to_apply(self):
         for rec in self:
-            if 0 >= rec.day_to_apply > 31:
+            if (rec.day_to_apply <= 0) or (rec.day_to_apply > 31):
                 raise UserError(
                     _("Day to apply of fixed input %s must be between 1 or 31")
                     % (rec.payslip_input_type_id.display_name)
