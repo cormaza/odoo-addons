@@ -127,7 +127,8 @@ class ScheduledTransactionTest(TransactionCase):
             self.fixed_transaction_model.create(
                 {
                     "contract_id": self.contract_id.id,
-                    "start_date": self.contract_id.date_end + relativedelta(days=1),
+                    "start_date": self.contract_id.date_start,
+                    "end_date": self.contract_id.date_end + relativedelta(days=1),
                     "day_to_apply": 31,
                     "payslip_input_type_id": self.input_type_id.id,
                     "amount": 100.0,
