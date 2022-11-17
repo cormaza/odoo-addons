@@ -87,7 +87,7 @@ class ScheduledTransactionTest(TransactionCase):
 
     def test_contract(self):
         with self.assertRaises(UserError):
-            self.fixed_transaction_model(
+            self.fixed_transaction_model.create(
                 {
                     "contract_id": self.contract_id.id,
                     "day_to_apply": 31,
