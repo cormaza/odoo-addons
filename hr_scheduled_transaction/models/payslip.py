@@ -40,7 +40,7 @@ class HrPayslipInputType(models.Model):
         rule_model = self.env["hr.salary.rule"]
         struct_model = self.env["hr.payroll.structure"]
         current_structs = rec.struct_ids
-        if not current_structs:
+        if not current_structs and rec.country_id:
             current_structs = struct_model.search(
                 [
                     ("country_id", "=", rec.country_id.id),
@@ -96,17 +96,18 @@ class HrPayslipInputType(models.Model):
         comodel_name="hr.salary.rule",
         inverse_name="input_type_id",
         string="Salary Rules",
-        required=False,
+        readonly=True,
+    )
+
+    rule_count = fields.Integer(
+        string="Rules Count",
+        compute="_compute_rule_count",
     )
 
     @api.depends("rule_ids")
-    def _get_rule_count(self):
+    def _compute_rule_count(self):
         for rec in self:
             rec.rule_count = len(rec.rule_ids)
-
-    rule_count = fields.Integer(
-        string="Rules Count", funcion="_get_rule_count", required=False
-    )
 
     def action_show_rules(self):
         self.ensure_one()
@@ -206,7 +207,7 @@ class HrPayslip(models.Model):
                     lambda x: x.payslip_input_type_id.id == input_type.id
                 )
                 amount = sum(
-                    st.type == "input" and st.amount or st.amount * -1
+                    st.transaction_type == "input" and st.amount or st.amount * -1
                     for st in current_st
                 )
                 current_fi = fixed_inputs.filtered(

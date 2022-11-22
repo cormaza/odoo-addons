@@ -96,6 +96,7 @@ class HrScheduledTransaction(models.Model):
         for field in _FIELDS_TO_CHECK:
             if field in vals:
                 recompute = True
+                break
         if not self.env.context.get("stop_recursion", False) and recompute:
             slip_model._recalc_payslip_change(rec.employee_id.id, rec.date)
         return rec
@@ -106,13 +107,14 @@ class HrScheduledTransaction(models.Model):
         for field in _FIELDS_TO_CHECK:
             if field in vals:
                 recompute = True
+                break
         to_recompute_data = []
         if not self.env.context.get("stop_recursion", False) and recompute:
             for rec in self:
-                reference_date = vals.get("date", False)
-                if reference_date:
-                    to_recompute_data.append((rec.employee_id.id, reference_date))
-                else:
+                before_date = rec.date
+                reference_date = vals.get("date", rec.date)
+                to_recompute_data.append((rec.employee_id.id, reference_date))
+                if before_date != reference_date:
                     to_recompute_data.append((rec.employee_id.id, rec.date))
         res = super(HrScheduledTransaction, self).write(vals)
         for employee_id, reference_date in to_recompute_data:
