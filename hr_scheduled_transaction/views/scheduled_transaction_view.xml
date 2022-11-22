@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="hr_scheduled_transaction_tree_view">
+        <field name="name">hr.scheduled.transaction.tree</field>
+        <field name="model">hr.scheduled.transaction</field>
+        <field name="arch" type="xml">
+            <tree editable="top">
+                <field name="company_id" groups="base.group_multi_company" />
+                <field
+                    name="employee_id"
+                    attrs="{'readonly': [('is_processed', '=', True)]}"
+                />
+                <field
+                    name="payslip_input_type_id"
+                    attrs="{'readonly': [('is_processed', '=', True)]}"
+                />
+                <field
+                    name="reference"
+                    attrs="{'readonly': [('is_processed', '=', True)]}"
+                />
+                <field
+                    name="date"
+                    attrs="{'readonly': [('is_processed', '=', True)]}"
+                />
+                <field
+                    name="amount"
+                    attrs="{'readonly': [('is_processed', '=', True)]}"
+                    sum="Amount"
+                />
+                <field name="transaction_type" invisible="1" />
+                <field name="is_processed" />
+            </tree>
+        </field>
+    </record>
+    <record id="hr_scheduled_transaction_view_form" model="ir.ui.view">
+        <field name="name">hr_scheduled_transaction_view_form</field>
+        <field name="model">hr.scheduled.transaction</field>
+        <field name="arch" type="xml">
+            <form string="hr_scheduled_transaction_form">
+                <sheet>
+                    <group>
+                        <field name="company_id" groups="base.group_multi_company" />
+                        <field
+                            name="employee_id"
+                            attrs="{'readonly': [('is_processed', '=', True)]}"
+                        />
+                        <field
+                            name="payslip_input_type_id"
+                            attrs="{'readonly': [('is_processed', '=', True)]}"
+                        />
+                        <field
+                            name="date"
+                            attrs="{'readonly': [('is_processed', '=', True)]}"
+                        />
+                        <field
+                            name="amount"
+                            attrs="{'readonly': [('is_processed', '=', True)]}"
+                            sum="Amount"
+                        />
+                        <field name="transaction_type" invisible="1" />
+                        <field name="is_processed" />
+                        <field name="transaction_type" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="hr_scheduled_transaction_view_search" model="ir.ui.view">
+        <field name="name">hr.scheduled.transaction.search</field>
+        <field name="model">hr.scheduled.transaction</field>
+        <field name="arch" type="xml">
+            <search string="Scheduled Transactions">
+                <field name="employee_id" />
+                <field name="payslip_input_type_id" />
+                <filter
+                    string="No processed"
+                    name="fiter_no_processed"
+                    domain="[('is_processed', '=', False)]"
+                />
+                <separator />
+                <filter
+                    string="Inputs"
+                    name="fiter_inputs"
+                    domain="[('transaction_type', '=', 'input')]"
+                />
+                <filter
+                    string="Outputs"
+                    name="fiter_outputs"
+                    domain="[('transaction_type', '=', 'output')]"
+                />
+                <filter
+                    string="Date"
+                    name="filter_date"
+                    date="date"
+                    default_period="this_month"
+                />
+                <group expand="0" string="Group By">
+                    <filter
+                        string="Employee"
+                        name="group_by_employee"
+                        domain="[]"
+                        context="{'group_by': 'employee_id'}"
+                    />
+                    <filter
+                        string="Input/Output Type"
+                        name="group_by_input_type"
+                        domain="[]"
+                        context="{'group_by': 'payslip_input_type_id'}"
+                    />
+                    <filter
+                        string="Type"
+                        name="group_by_type"
+                        domain="[]"
+                        context="{'group_by': 'transaction_type'}"
+                    />
+                    <filter
+                        string="Date"
+                        name="group_by_date"
+                        domain="[]"
+                        context="{'group_by': 'date'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+    <record
+        model="ir.actions.act_window"
+        id="action_hr_scheduled_transaction_tree_view"
+    >
+        <field name="name">Scheduled Transactions</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hr.scheduled.transaction</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'search_default_is_processed':1}</field>
+        <field name="view_id" ref="hr_scheduled_transaction_tree_view" />
+    </record>
+    <menuitem
+        name="Scheduled Transactions"
+        id="hr_income_transaction_item"
+        parent="hr_payroll.menu_hr_payroll_payslips"
+        sequence="50"
+        action="action_hr_scheduled_transaction_tree_view"
+    />
+</odoo>
