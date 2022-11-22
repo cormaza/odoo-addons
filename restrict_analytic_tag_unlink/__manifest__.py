@@ -8,4 +8,5 @@
     "depends": ["base", "analytic"],
     "data": [],
     "license": "AGPL-3",
+    "external_dependencies": {"python": ["odoo-test-helper"]},
 }
