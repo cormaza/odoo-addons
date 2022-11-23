@@ -1,8 +1,7 @@
 git:
   filters:
-  - filter_type: dir
+  - filter_type: file
     file_format: PO
-    source_file_extension: pot
+    source_file: hr_scheduled_transaction/i18n/hr_scheduled_transaction.pot
     source_language: en
-    source_file_dir: hr_scheduled_transaction/i18n
     translation_files_expression: 'hr_scheduled_transaction/i18n/<lang>.po'
