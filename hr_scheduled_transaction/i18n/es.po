@@ -1,0 +1,335 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* hr_scheduled_transaction
+# 
+# Translators:
+# Christopher Ormaza <chris.ormaza@gmail.com>, 2022
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: Christopher Ormaza <chris.ormaza@gmail.com>, 2022\n"
+"Language-Team: Spanish (https://www.transifex.com/odoo-addons/teams/157331/es/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: es\n"
+"Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
+
+#. module: hr_scheduled_transaction
+#: model:ir.model.fields,field_description:hr_scheduled_transaction.field_hr_contract_fixed_inputs__amount
+#: model:ir.model.fields,field_description:hr_scheduled_transaction.field_hr_scheduled_transaction__amount
+#: model_terms:ir.ui.view,arch_db:hr_scheduled_transaction.hr_scheduled_transaction_tree_view
+#: model_terms:ir.ui.view,arch_db:hr_scheduled_transaction.hr_scheduled_transaction_view_form
+msgid "Amount"
+msgstr "Monto"
+
+#. module: hr_scheduled_transaction
+#: code:addons/hr_scheduled_transaction/models/scheduled_transaction.py:0
+#, python-format
+msgid "Amount must be bigger than zero"
+msgstr "Monto debe ser mayor a zero"
+
+#. module: hr_scheduled_transaction
+#: code:addons/hr_scheduled_transaction/models/contract.py:0
+#, python-format
+msgid "Amount of fixed input %(input_name)s must be bigger than zero"
+msgstr "Monto de entrada fija %(input_name)s debe ser mayor que cero"
+
+#. module: hr_scheduled_transaction
+#: model:ir.model.fields,field_description:hr_scheduled_transaction.field_hr_payslip_input_type__analytic_account_id
+msgid "Analytic Account"
+msgstr "Cuenta analítica"
+
+#. module: hr_scheduled_transaction
+#: model:ir.model.fields,field_description:hr_scheduled_transaction.field_hr_payslip_input_type__category_id
+msgid "Category Salary Rule"
+msgstr "Categoría de Regla Salaríal"
+
+#. module: hr_scheduled_transaction
+#: model:ir.model.fields,field_description:hr_scheduled_transaction.field_hr_scheduled_transaction__company_id
+msgid "Company"
+msgstr "Compañía"
+
+#. module: hr_scheduled_transaction
+#: model:ir.model.fields,field_description:hr_scheduled_transaction.field_hr_contract_fixed_inputs__contract_id
+msgid "Contract"
+msgstr "Contrato"
+
+#. module: hr_scheduled_transaction
+#: model:ir.model.fields,field_description:hr_scheduled_transaction.field_hr_payslip__l10n_ec_count_transactions
+msgid "Count Scheduled Transactions"
+msgstr "Cuenta de Transacciones Programadas"
+
+#. module: hr_scheduled_transaction
+#: model:ir.model.fields,field_description:hr_scheduled_transaction.field_hr_contract_fixed_inputs__create_uid
+#: model:ir.model.fields,field_description:hr_scheduled_transaction.field_hr_scheduled_transaction__create_uid
+msgid "Created by"
+msgstr "Creado Por"
+
+#. module: hr_scheduled_transaction
+#: model:ir.model.fields,field_description:hr_scheduled_transaction.field_hr_contract_fixed_inputs__create_date
+#: model:ir.model.fields,field_description:hr_scheduled_transaction.field_hr_scheduled_transaction__create_date
+msgid "Created on"
+msgstr "Creado En"
+
+#. module: hr_scheduled_transaction
+#: model:ir.model.fields,field_description:hr_scheduled_transaction.field_hr_payslip_input_type__account_credit_id
+msgid "Credit Account"
+msgstr "Cuenta de Crédito"
+
+#. module: hr_scheduled_transaction
+#: model:ir.model.fields,field_description:hr_scheduled_transaction.field_hr_scheduled_transaction__date
+#: model_terms:ir.ui.view,arch_db:hr_scheduled_transaction.hr_scheduled_transaction_view_search
+msgid "Date"
+msgstr "Fecha"
+
+#. module: hr_scheduled_transaction
+#: model:ir.model.fields,field_description:hr_scheduled_transaction.field_hr_contract_fixed_inputs__day_to_apply
+msgid "Day To Apply"
+msgstr "Fecha para Aplicación"
+
+#. module: hr_scheduled_transaction
+#: code:addons/hr_scheduled_transaction/models/contract.py:0
+#, python-format
+msgid "Day to apply of fixed input %s must be between 1 or 31"
+msgstr "El día para la aplicación de la entrada fija %s debe ser entre 1 o 31"
+
+#. module: hr_scheduled_transaction
+#: model:ir.model.fields,field_description:hr_scheduled_transaction.field_hr_payslip_input_type__account_debit_id
+msgid "Debit Account"
+msgstr "Cuenta de Débito"
+
+#. module: hr_scheduled_transaction
+#: model:ir.model.fields,field_description:hr_scheduled_transaction.field_hr_contract_fixed_inputs__display_name
+#: model:ir.model.fields,field_description:hr_scheduled_transaction.field_hr_scheduled_transaction__display_name
+msgid "Display Name"
+msgstr "Nombre Mostrado"
+
+#. module: hr_scheduled_transaction
+#: code:addons/hr_scheduled_transaction/models/payslip.py:0
+#, python-format
+msgid "Don't include spaces characters in code of %s"
+msgstr "No incluir espacios en el código %s"
+
+#. module: hr_scheduled_transaction
+#: model:ir.model.fields,field_description:hr_scheduled_transaction.field_hr_scheduled_transaction__employee_id
+#: model_terms:ir.ui.view,arch_db:hr_scheduled_transaction.hr_scheduled_transaction_view_search
+msgid "Employee"
+msgstr "Empleado"
+
+#. module: hr_scheduled_transaction
+#: model:ir.model,name:hr_scheduled_transaction.model_hr_contract
+msgid "Employee Contract"
+msgstr "Contrato de Empleado"
+
+#. module: hr_scheduled_transaction
+#: model:ir.model.fields,field_description:hr_scheduled_transaction.field_hr_contract_fixed_inputs__end_date
+msgid "End Date"
+msgstr "Fecha Final"
+
+#. module: hr_scheduled_transaction
+#: code:addons/hr_scheduled_transaction/models/contract.py:0
+#, python-format
+msgid ""
+"End Date of Fixed Input %(input_name)s %(input_end_date)s must be before "
+"contract date end %(contract_date_end)s"
+msgstr ""
+"Fecha Final de entrada fija %(input_name)s %(input_end_date)s debe ser antes"
+" de la fecha de finalización del contrato %(contract_date_end)s"
+
+#. module: hr_scheduled_transaction
+#: model_terms:ir.ui.view,arch_db:hr_scheduled_transaction.hr_contract_view_form
+msgid "Fixed Inputs"
+msgstr "Entradas Fijas"
+
+#. module: hr_scheduled_transaction
+#: model:ir.model.fields,field_description:hr_scheduled_transaction.field_hr_contract__fixed_inputs_ids
+msgid "Fixed inputs"
+msgstr "Entradas Fijas"
+
+#. module: hr_scheduled_transaction
+#: model_terms:ir.ui.view,arch_db:hr_scheduled_transaction.hr_scheduled_transaction_view_search
+msgid "Group By"
+msgstr "Agrupar Por"
+
+#. module: hr_scheduled_transaction
+#: model:ir.model.fields,field_description:hr_scheduled_transaction.field_hr_contract_fixed_inputs__id
+#: model:ir.model.fields,field_description:hr_scheduled_transaction.field_hr_scheduled_transaction__id
+msgid "ID"
+msgstr "ID"
+
+#. module: hr_scheduled_transaction
+#: model:ir.model.fields.selection,name:hr_scheduled_transaction.selection__hr_contract_fixed_inputs__transaction_type__input
+#: model:ir.model.fields.selection,name:hr_scheduled_transaction.selection__hr_scheduled_transaction__transaction_type__input
+msgid "Input"
+msgstr "Ingreso"
+
+#. module: hr_scheduled_transaction
+#: model:ir.model.fields,field_description:hr_scheduled_transaction.field_hr_salary_rule__input_type_id
+msgid "Input Type"
+msgstr "Tipo de Ingreso"
+
+#. module: hr_scheduled_transaction
+#: model_terms:ir.ui.view,arch_db:hr_scheduled_transaction.hr_scheduled_transaction_view_search
+msgid "Input/Output Type"
+msgstr "Ingreso/Egreso Tipo"
+
+#. module: hr_scheduled_transaction
+#: model_terms:ir.ui.view,arch_db:hr_scheduled_transaction.hr_scheduled_transaction_view_search
+msgid "Inputs"
+msgstr "Ingresos"
+
+#. module: hr_scheduled_transaction
+#: model:ir.model.fields,field_description:hr_scheduled_transaction.field_hr_scheduled_transaction__is_processed
+msgid "Is Processed?"
+msgstr "Esta Procesado?"
+
+#. module: hr_scheduled_transaction
+#: model:ir.model.fields,field_description:hr_scheduled_transaction.field_hr_contract_fixed_inputs____last_update
+#: model:ir.model.fields,field_description:hr_scheduled_transaction.field_hr_scheduled_transaction____last_update
+msgid "Last Modified on"
+msgstr "Última modificación en"
+
+#. module: hr_scheduled_transaction
+#: model:ir.model.fields,field_description:hr_scheduled_transaction.field_hr_contract_fixed_inputs__write_uid
+#: model:ir.model.fields,field_description:hr_scheduled_transaction.field_hr_scheduled_transaction__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: hr_scheduled_transaction
+#: model:ir.model.fields,field_description:hr_scheduled_transaction.field_hr_contract_fixed_inputs__write_date
+#: model:ir.model.fields,field_description:hr_scheduled_transaction.field_hr_scheduled_transaction__write_date
+msgid "Last Updated on"
+msgstr "Última actualización en"
+
+#. module: hr_scheduled_transaction
+#: model_terms:ir.ui.view,arch_db:hr_scheduled_transaction.hr_scheduled_transaction_view_search
+msgid "No processed"
+msgstr "No procesado"
+
+#. module: hr_scheduled_transaction
+#: model:ir.model.fields,field_description:hr_scheduled_transaction.field_hr_payslip_input_type__not_computed_in_net
+msgid "Not computed in net accountability"
+msgstr "No registrar asientos contables"
+
+#. module: hr_scheduled_transaction
+#: model:ir.model.fields.selection,name:hr_scheduled_transaction.selection__hr_contract_fixed_inputs__transaction_type__output
+#: model:ir.model.fields.selection,name:hr_scheduled_transaction.selection__hr_scheduled_transaction__transaction_type__output
+msgid "Output"
+msgstr "Egreso"
+
+#. module: hr_scheduled_transaction
+#: model_terms:ir.ui.view,arch_db:hr_scheduled_transaction.hr_scheduled_transaction_view_search
+msgid "Outputs"
+msgstr "Egresos"
+
+#. module: hr_scheduled_transaction
+#: model:ir.model,name:hr_scheduled_transaction.model_hr_payslip
+msgid "Pay Slip"
+msgstr "Pagar Nómina"
+
+#. module: hr_scheduled_transaction
+#: model:ir.model,name:hr_scheduled_transaction.model_hr_payslip_input
+msgid "Payslip Input"
+msgstr "Ingreso en Nómina"
+
+#. module: hr_scheduled_transaction
+#: model:ir.model,name:hr_scheduled_transaction.model_hr_payslip_input_type
+#: model:ir.model.fields,field_description:hr_scheduled_transaction.field_hr_contract_fixed_inputs__payslip_input_type_id
+#: model:ir.model.fields,field_description:hr_scheduled_transaction.field_hr_scheduled_transaction__payslip_input_type_id
+msgid "Payslip Input Type"
+msgstr "Tipo de Ingreso en Nómina"
+
+#. module: hr_scheduled_transaction
+#: model:ir.model.fields,field_description:hr_scheduled_transaction.field_hr_scheduled_transaction__payslip_input_ids
+msgid "Payslip inputs"
+msgstr "Ingresos de nómina"
+
+#. module: hr_scheduled_transaction
+#: model:ir.model.fields,field_description:hr_scheduled_transaction.field_hr_scheduled_transaction__reference
+msgid "Reference"
+msgstr "Referencia"
+
+#. module: hr_scheduled_transaction
+#: model:ir.model.fields,field_description:hr_scheduled_transaction.field_hr_payslip_input_type__rule_count
+msgid "Rules Count"
+msgstr "Cuenta de Reglas"
+
+#. module: hr_scheduled_transaction
+#: model:ir.model,name:hr_scheduled_transaction.model_hr_salary_rule
+msgid "Salary Rule"
+msgstr "Regla Salarial"
+
+#. module: hr_scheduled_transaction
+#: model:ir.model.fields,field_description:hr_scheduled_transaction.field_hr_payslip_input_type__rule_ids
+#: model_terms:ir.ui.view,arch_db:hr_scheduled_transaction.hr_payslip_input_type_form_view
+msgid "Salary Rules"
+msgstr "Reglas Salariales"
+
+#. module: hr_scheduled_transaction
+#: model:ir.model,name:hr_scheduled_transaction.model_hr_scheduled_transaction
+msgid "Scheduled Transaction"
+msgstr "Transacción Programada"
+
+#. module: hr_scheduled_transaction
+#: model:ir.actions.act_window,name:hr_scheduled_transaction.action_hr_scheduled_transaction_tree_view
+#: model:ir.model.fields,field_description:hr_scheduled_transaction.field_hr_payslip_input__transaction_ids
+#: model:ir.ui.menu,name:hr_scheduled_transaction.hr_income_transaction_item
+#: model_terms:ir.ui.view,arch_db:hr_scheduled_transaction.hr_scheduled_transaction_view_search
+msgid "Scheduled Transactions"
+msgstr "Transacciones Programadas"
+
+#. module: hr_scheduled_transaction
+#: model:ir.model.fields,field_description:hr_scheduled_transaction.field_hr_payslip_input_type__sequence
+msgid "Sequence"
+msgstr "Secuencia"
+
+#. module: hr_scheduled_transaction
+#: model:ir.model.fields,field_description:hr_scheduled_transaction.field_hr_contract_fixed_inputs__start_date
+msgid "Start Date"
+msgstr "Fecha de Inicio"
+
+#. module: hr_scheduled_transaction
+#: code:addons/hr_scheduled_transaction/models/contract.py:0
+#, python-format
+msgid ""
+"Start Date of Fixed Input %(input_name)s %(input_date_start)s must be after "
+"contract date start %(date_start)s"
+msgstr ""
+"Fecha de inicio de la entrada fija %(input_name)s %(input_date_start)s Debe "
+"ser despues de la fecha de inicio del contrato %(date_start)s"
+
+#. module: hr_scheduled_transaction
+#: model_terms:ir.ui.view,arch_db:hr_scheduled_transaction.hr_payslip_inherit_form_view
+msgid "Transactions"
+msgstr "Transacciones"
+
+#. module: hr_scheduled_transaction
+#: model:ir.model.fields,field_description:hr_scheduled_transaction.field_hr_contract_fixed_inputs__transaction_type
+#: model:ir.model.fields,field_description:hr_scheduled_transaction.field_hr_scheduled_transaction__transaction_type
+#: model_terms:ir.ui.view,arch_db:hr_scheduled_transaction.hr_scheduled_transaction_view_search
+msgid "Type"
+msgstr "Tipo"
+
+#. module: hr_scheduled_transaction
+#: code:addons/hr_scheduled_transaction/models/payslip.py:0
+#, python-format
+msgid ""
+"You cannot modify this record because there's more than one transaction with"
+" this code %s, you must modify on scheduled transactions"
+msgstr ""
+"Usted no puede modificar este registro debido a que existe mas de úna "
+"transaccion con el código %s, debería modificar las transacciones "
+"programadas asociadas"
+
+#. module: hr_scheduled_transaction
+#: model:ir.model,name:hr_scheduled_transaction.model_hr_contract_fixed_inputs
+msgid "hr.contract.fixed.inputs"
+msgstr "hr.contract.fixed.inputs"
+
+#. module: hr_scheduled_transaction
+#: model_terms:ir.ui.view,arch_db:hr_scheduled_transaction.hr_scheduled_transaction_view_form
+msgid "hr_scheduled_transaction_form"
+msgstr "hr_scheduled_transaction_form"
