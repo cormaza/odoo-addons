@@ -67,3 +67,6 @@ jobs:
       - name: Update .pot files
         run: oca_export_and_push_pot https://x-access-token:${{ secrets.GIT_PUSH_TOKEN }}@github.com/${{ github.repository }}
         if: ${{ matrix.makepot == 'true' && github.event_name == 'push' && github.repository_owner == 'cormaza' }}
+        env:
+          OCA_GIT_USER_NAME: cormaza
+          OCA_GIT_USER_EMAIL: chris.ormaza@gmail.com
