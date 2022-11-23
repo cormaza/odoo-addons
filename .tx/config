@@ -1,33 +1,8 @@
-[main]
-host = https://www.transifex.com
-type = PO
-
-[calendar_optional_attendees]
-file_filter = calendar_optional_attendees/i18n/<lang>.po
-source_file = calendar_optional_attendees/i18n/base.pot
-source_lang = en
-
-[hr_scheduled_transaction]
-file_filter = hr_scheduled_transaction/i18n/<lang>.po
-source_file = hr_scheduled_transaction/i18n/base.pot
-source_lang = en
-
-[mail_activity_default_user_crm]
-file_filter = mail_activity_default_user_crm/i18n/<lang>.po
-source_file = mail_activity_default_user_crm/i18n/base.pot
-source_lang = en
-
-[restrict_analytic_tag_unlink]
-file_filter = restrict_analytic_tag_unlink/i18n/<lang>.po
-source_file = restrict_analytic_tag_unlink/i18n/base.pot
-source_lang = en
-
-[sale_rates]
-file_filter = sale_rates/i18n/<lang>.po
-source_file = sale_rates/i18n/base.pot
-source_lang = en
-
-[utm_chatter]
-file_filter = utm_chatter/i18n/<lang>.po
-source_file = utm_chatter/i18n/base.pot
-source_lang = en
+git:
+  filters:
+  - filter_type: dir
+    file_format: PO
+    source_file_extension: pot
+    source_language: en
+    source_file_dir: hr_scheduled_transaction/i18n
+    translation_files_expression: 'hr_scheduled_transaction/i18n/<lang>.po'
