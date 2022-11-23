@@ -10,3 +10,23 @@ git:
     source_file: calendar_optional_attendees/i18n/calendar_optional_attendees.pot
     source_language: en
     translation_files_expression: 'calendar_optional_attendees/i18n/<lang>.po'
+  - filter_type: file
+    file_format: PO
+    source_file: mail_activity_default_user_crm/i18n/mail_activity_default_user_crm.pot
+    source_language: en
+    translation_files_expression: 'mail_activity_default_user_crm/i18n/<lang>.po'
+  - filter_type: file
+    file_format: PO
+    source_file: restrict_analytic_tag_unlink/i18n/restrict_analytic_tag_unlink.pot
+    source_language: en
+    translation_files_expression: 'restrict_analytic_tag_unlink/i18n/<lang>.po'
+  - filter_type: file
+    file_format: PO
+    source_file: sale_rates/i18n/sale_rates.pot
+    source_language: en
+    translation_files_expression: 'sale_rates/i18n/<lang>.po'
+  - filter_type: file
+    file_format: PO
+    source_file: utm_chatter/i18n/utm_chatter.pot
+    source_language: en
+    translation_files_expression: 'utm_chatter/i18n/<lang>.po'
