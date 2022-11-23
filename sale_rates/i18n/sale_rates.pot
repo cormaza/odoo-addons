@@ -1,0 +1,59 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_rates
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_rates
+#: model:ir.model.fields,field_description:sale_rates.field_sale_order__force_full_rated
+msgid "Force full invoiced and delivered rated"
+msgstr ""
+
+#. module: sale_rates
+#: model_terms:ir.ui.view,arch_db:sale_rates.sale_order_view_search_inherit_sale_rates
+msgid "Fully Delivered"
+msgstr ""
+
+#. module: sale_rates
+#: model:ir.model.fields,field_description:sale_rates.field_sale_order__invoiced_rate
+msgid "Invoiced (%)"
+msgstr ""
+
+#. module: sale_rates
+#: model_terms:ir.ui.view,arch_db:sale_rates.sale_order_view_search_inherit_sale_rates
+msgid "Invoiced Total"
+msgstr ""
+
+#. module: sale_rates
+#: model_terms:ir.ui.view,arch_db:sale_rates.sale_order_view_search_inherit_sale_rates
+msgid "Partial Invoiced"
+msgstr ""
+
+#. module: sale_rates
+#: model_terms:ir.ui.view,arch_db:sale_rates.sale_order_view_search_inherit_sale_rates
+msgid "Partially Delivered"
+msgstr ""
+
+#. module: sale_rates
+#: model:ir.model,name:sale_rates.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
+#. module: sale_rates
+#: model:ir.model.fields,field_description:sale_rates.field_sale_order__shipped_rate
+msgid "Shipped (%)"
+msgstr ""
+
+#. module: sale_rates
+#: model_terms:ir.ui.view,arch_db:sale_rates.sale_order_view_search_inherit_sale_rates
+msgid "Without Delivery"
+msgstr ""
