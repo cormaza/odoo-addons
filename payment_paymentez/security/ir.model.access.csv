@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_paymentez_installments_type_all,access_paymentez_installments_type_all,model_paymentez_installments_type,,1,0,0,0
+access_paymentez_installments_type_group_system,access_paymentez_installments_type_group_system,model_paymentez_installments_type,base.group_system,1,1,1,1

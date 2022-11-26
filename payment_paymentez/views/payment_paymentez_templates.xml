@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <template id="inline_form">
+        <div
+            t-attf-id="o_paymentez_form_{{acquirer_id}}"
+            class="o_paymentez_form payment-form"
+        >
+        </div>
+    </template>
+
+</odoo>
