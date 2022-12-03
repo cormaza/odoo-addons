@@ -29,18 +29,11 @@ class PaymentezController(http.Controller):
             )
             taxes_data = order._get_taxes_data_paymentez()
             tax_rates = list(
-                {tax.amount for tax in taxes_data.keys() if tax.amount > 0}
+                {tax.amount for tax in taxes_data.keys() if tax.amount != 0}
             )
             # CHECKME: When you send data paymentez
             # only accept one rate of iva, and compare
             # all value with taxes value
-            if len(tax_rates) == 0:
-                raise UserError(
-                    _(
-                        "Your products don't have taxes configured, "
-                        "please ask for support for page administrator"
-                    )
-                )
             if len(tax_rates) > 1:
                 raise UserError(
                     _(
@@ -65,25 +58,18 @@ class PaymentezController(http.Controller):
                     "order_vat": order.amount_tax,
                     "order_reference": order.name,
                     "order_taxable_amount": base_amount,
-                    "order_tax_percentage": tax_rates[0],
+                    "order_tax_percentage": tax_rates and tax_rates[0] or 0,
                 }
             )
         elif invoice_id:
             invoice = request.env["account.move"].browse(invoice_id).sudo()
             taxes_data = invoice._get_taxes_data_paymentez()
             tax_rates = list(
-                {tax.amount for tax in taxes_data.keys() if tax.amount > 0}
+                {tax.amount for tax in taxes_data.keys() if tax.amount != 0}
             )
             # CHECKME: When you send data paymentez only
             # accept one rate of iva, and compare
             # all value with taxes value
-            if len(tax_rates) == 0:
-                raise UserError(
-                    _(
-                        "Your products don't have taxes configured, "
-                        "please ask for support for page administrator"
-                    )
-                )
             if len(tax_rates) > 1:
                 raise UserError(
                     _(
@@ -108,7 +94,7 @@ class PaymentezController(http.Controller):
                     "order_vat": invoice.amount_tax,
                     "order_reference": invoice.name,
                     "order_taxable_amount": base_amount,
-                    "order_tax_percentage": tax_rates[0],
+                    "order_tax_percentage": tax_rates and tax_rates[0] or 0,
                 }
             )
         acquirer_sudo = (
