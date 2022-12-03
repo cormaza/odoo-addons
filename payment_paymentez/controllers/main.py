@@ -1,6 +1,7 @@
 import logging
 
-from odoo import http
+from odoo import _, http
+from odoo.exceptions import UserError
 from odoo.http import request
 
 _logger = logging.getLogger(__name__)
@@ -26,6 +27,32 @@ class PaymentezController(http.Controller):
                 .browse(request.session.get("sale_order_id", False))
                 .sudo()
             )
+            taxes_data = order._get_taxes_data_paymentez()
+            tax_rates = list(
+                {tax.amount for tax in taxes_data.keys() if tax.amount > 0}
+            )
+            # CHECKME: When you send data paymentez
+            # only accept one rate of iva, and compare
+            # all value with taxes value
+            if len(tax_rates) == 0:
+                raise UserError(
+                    _(
+                        "Your products don't have taxes configured, "
+                        "please ask for support for page administrator"
+                    )
+                )
+            if len(tax_rates) > 1:
+                raise UserError(
+                    _(
+                        "Your have more than one VAT tax assigned on your order, "
+                        "please ask for support for page administrator"
+                    )
+                )
+            base_amount = sum(
+                taxes_data[tax].get("base")
+                for tax in taxes_data.keys()
+                if tax.amount > 0
+            )
             order_data.update(
                 {
                     "user_id": str(order.partner_id.vat or order.partner_id.id),
@@ -33,22 +60,42 @@ class PaymentezController(http.Controller):
                     "user_phone": order.partner_id.mobile
                     or order.partner_id.phone
                     or "",
-                    "order_description": order.display_name
-                    or "",  # TODO: get more detailed description from lines
-                    "order_amount": order.amount_total * 1.12,
-                    # "order_vat": order.amount_tax,
-                    "order_vat": order.amount_total * 0.12,
+                    "order_description": order.display_name or "",
+                    "order_amount": order.amount_total,
+                    "order_vat": order.amount_tax,
                     "order_reference": order.name,
-                    # TODO: get installments allowed from acquirer
-                    # "order_installments_type": "",
-                    # TODO: get taxable amount from order
-                    "order_taxable_amount": order.amount_total,
-                    # TODO: get tax percentage from tax applied on lines
-                    "order_tax_percentage": 12.0,
+                    "order_taxable_amount": base_amount,
+                    "order_tax_percentage": tax_rates[0],
                 }
             )
         elif invoice_id:
             invoice = request.env["account.move"].browse(invoice_id).sudo()
+            taxes_data = invoice._get_taxes_data_paymentez()
+            tax_rates = list(
+                {tax.amount for tax in taxes_data.keys() if tax.amount > 0}
+            )
+            # CHECKME: When you send data paymentez only
+            # accept one rate of iva, and compare
+            # all value with taxes value
+            if len(tax_rates) == 0:
+                raise UserError(
+                    _(
+                        "Your products don't have taxes configured, "
+                        "please ask for support for page administrator"
+                    )
+                )
+            if len(tax_rates) > 1:
+                raise UserError(
+                    _(
+                        "Your have more than one VAT tax assigned on your order, "
+                        "please ask for support for page administrator"
+                    )
+                )
+            base_amount = sum(
+                taxes_data[tax].get("base")
+                for tax in taxes_data.keys()
+                if tax.amount > 0
+            )
             order_data.update(
                 {
                     "user_id": str(invoice.partner_id.vat or invoice.partner_id.id),
@@ -56,15 +103,12 @@ class PaymentezController(http.Controller):
                     "user_phone": invoice.partner_id.mobile
                     or invoice.partner_id.phone
                     or "",
-                    # TODO: get more detailed description from lines
                     "order_description": invoice.display_name or "",
-                    "order_amount": invoice.amount_total * 1.12,
-                    "order_vat": invoice.amount_total * 0.12,
+                    "order_amount": invoice.amount_total,
+                    "order_vat": invoice.amount_tax,
                     "order_reference": invoice.name,
-                    # TODO: get taxable amount from order
-                    "order_taxable_amount": invoice.amount_total,
-                    # TODO: get tax percentage from tax applied on lines
-                    "order_tax_percentage": 12.0,
+                    "order_taxable_amount": base_amount,
+                    "order_tax_percentage": tax_rates[0],
                 }
             )
         acquirer_sudo = (

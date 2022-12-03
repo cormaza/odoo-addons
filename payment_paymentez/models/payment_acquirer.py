@@ -17,19 +17,19 @@ class PaymentAcquirer(models.Model):
     )
     paymentez_app_code = fields.Char(
         required_if_provider="paymentez",
-        groups="base.group_user",
+        copy=False,
     )
     paymentez_app_key = fields.Char(
         required_if_provider="paymentez",
-        groups="base.group_user",
+        copy=False,
     )
     paymentez_server_code = fields.Char(
         required_if_provider="paymentez",
-        groups="base.group_user",
+        copy=False,
     )
     paymentez_server_key = fields.Char(
         required_if_provider="paymentez",
-        groups="base.group_user",
+        copy=False,
     )
     paymentez_installments_type_id = fields.Many2one(
         comodel_name="paymentez.installments.type",

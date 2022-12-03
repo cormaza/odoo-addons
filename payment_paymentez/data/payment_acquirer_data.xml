@@ -11,13 +11,12 @@
         <field name="installment_type">0</field>
         <field name="installment_description">Revolving credit (rotativo).</field>
     </record>
+    <!-- prettier-ignore-start -->
     <record id="paymentez_installments_type_1" model="paymentez.installments.type">
         <field name="installment_type">1</field>
-        <field name="installment_description">
-            Revolving and deferred without interest (The bank will pay to the
-            commerce the installment, month by month).
-        </field>
+        <field name="installment_description">Revolving and deferred without interest (The bank will pay to the commerce the installment, month by month).</field>
     </record>
+    <!-- prettier-ignore-end -->
     <record id="paymentez_installments_type_2" model="paymentez.installments.type">
         <field name="installment_type">2</field>
         <field name="installment_description">Deferred with interest</field>
@@ -134,6 +133,10 @@
             file="payment_paymentez/static/description/icon.png"
         />
         <field name="state">test</field>
+        <field name="display_as">Credit Card - Revolving credit</field>
+        <field
+            name="pre_msg"
+        >You will be prompted with Paymentez Payment Pop-Up for payment information.</field>
         <field
             name="paymentez_installments_type_id"
             ref="payment_paymentez.paymentez_installments_type_0"
@@ -141,7 +144,20 @@
         <field name="support_authorization">False</field>
         <field name="support_fees_computation">False</field>
         <field name="support_tokenization">False</field>
-        <field name="support_refund">full_only</field>
+        <field name="support_refund">partial</field>
+        <field name="paymentez_app_code">demo</field>
+        <field name="paymentez_app_key">demo</field>
+        <field name="paymentez_server_code">demo</field>
+        <field name="paymentez_server_key">demo</field>
+        <field
+            name="payment_icon_ids"
+            eval='[(6, 0, [ref("payment.payment_icon_cc_american_express"),
+                                                      ref("payment.payment_icon_cc_mastercard"),
+                                                      ref("payment.payment_icon_cc_discover"),
+                                                      ref("payment.payment_icon_cc_diners_club_intl"),
+                                                      ref("payment.payment_icon_cc_visa")])]'
+        />
+        <field name="country_ids" eval="[(6, 0, [ref('base.ec')])]" />
     </record>
     <record id="payment_acquirer_paymentez_with_interest" model="payment.acquirer">
         <field name="name">Paymentez: Deferred with interest</field>
@@ -153,6 +169,10 @@
             file="payment_paymentez/static/description/icon.png"
         />
         <field name="state">test</field>
+        <field name="display_as">Credit Card - Deferred with interest</field>
+        <field
+            name="pre_msg"
+        >You will be prompted with Paymentez Payment Pop-Up for payment information.</field>
         <field
             name="paymentez_installments_type_id"
             ref="payment_paymentez.paymentez_installments_type_2"
@@ -160,7 +180,20 @@
         <field name="support_authorization">False</field>
         <field name="support_fees_computation">False</field>
         <field name="support_tokenization">False</field>
-        <field name="support_refund">full_only</field>
+        <field name="support_refund">partial</field>
+        <field name="paymentez_app_code">demo</field>
+        <field name="paymentez_app_key">demo</field>
+        <field name="paymentez_server_code">demo</field>
+        <field name="paymentez_server_key">demo</field>
+        <field
+            name="payment_icon_ids"
+            eval='[(6, 0, [ref("payment.payment_icon_cc_american_express"),
+                                                      ref("payment.payment_icon_cc_mastercard"),
+                                                      ref("payment.payment_icon_cc_discover"),
+                                                      ref("payment.payment_icon_cc_diners_club_intl"),
+                                                      ref("payment.payment_icon_cc_visa")])]'
+        />
+        <field name="country_ids" eval="[(6, 0, [ref('base.ec')])]" />
     </record>
     <record id="payment_acquirer_paymentez_without_interest" model="payment.acquirer">
         <field name="name">Paymentez: Deferred without interest</field>
@@ -172,6 +205,10 @@
             file="payment_paymentez/static/description/icon.png"
         />
         <field name="state">test</field>
+        <field name="display_as">Credit Card - Deferred without interest</field>
+        <field
+            name="pre_msg"
+        >You will be prompted with Paymentez Payment Pop-Up for payment information.</field>
         <field
             name="paymentez_installments_type_id"
             ref="payment_paymentez.paymentez_installments_type_3"
@@ -179,7 +216,20 @@
         <field name="support_authorization">False</field>
         <field name="support_fees_computation">False</field>
         <field name="support_tokenization">False</field>
-        <field name="support_refund">full_only</field>
+        <field name="support_refund">partial</field>
+        <field name="paymentez_app_code">demo</field>
+        <field name="paymentez_app_key">demo</field>
+        <field name="paymentez_server_code">demo</field>
+        <field name="paymentez_server_key">demo</field>
+        <field
+            name="payment_icon_ids"
+            eval='[(6, 0, [ref("payment.payment_icon_cc_american_express"),
+                                                      ref("payment.payment_icon_cc_mastercard"),
+                                                      ref("payment.payment_icon_cc_discover"),
+                                                      ref("payment.payment_icon_cc_diners_club_intl"),
+                                                      ref("payment.payment_icon_cc_visa")])]'
+        />
+        <field name="country_ids" eval="[(6, 0, [ref('base.ec')])]" />
     </record>
 
 </odoo>
