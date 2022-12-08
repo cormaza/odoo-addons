@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+
+    <record id="payment_method_paymentez" model="account.payment.method">
+        <field name="name">Paymentez</field>
+        <field name="code">paymentez</field>
+        <field name="payment_type">inbound</field>
+    </record>
+
+    <record id="paymentez_installments_type_0" model="paymentez.installments.type">
+        <field name="installment_type">0</field>
+        <field name="installment_description">Revolving credit (rotativo).</field>
+    </record>
+    <!-- prettier-ignore-start -->
+    <record id="paymentez_installments_type_1" model="paymentez.installments.type">
+        <field name="installment_type">1</field>
+        <field name="installment_description">Revolving and deferred without interest (The bank will pay to the commerce the installment, month by month).</field>
+    </record>
+    <!-- prettier-ignore-end -->
+    <record id="paymentez_installments_type_2" model="paymentez.installments.type">
+        <field name="installment_type">2</field>
+        <field name="installment_description">Deferred with interest</field>
+    </record>
+    <record id="paymentez_installments_type_3" model="paymentez.installments.type">
+        <field name="installment_type">3</field>
+        <field name="installment_description">Deferred without interest</field>
+    </record>
+    <record id="paymentez_installments_type_7" model="paymentez.installments.type">
+        <field name="installment_type">7</field>
+        <field
+            name="installment_description"
+        >Deferred with interest and months of grace</field>
+    </record>
+    <record id="paymentez_installments_type_6" model="paymentez.installments.type">
+        <field name="installment_type">6</field>
+        <field
+            name="installment_description"
+        >Deferred without interest pay month by month. (*)</field>
+    </record>
+    <record id="paymentez_installments_type_9" model="paymentez.installments.type">
+        <field name="installment_type">9</field>
+        <field
+            name="installment_description"
+        >Deferred without interest and months of grace</field>
+    </record>
+    <record id="paymentez_installments_type_10" model="paymentez.installments.type">
+        <field name="installment_type">10</field>
+        <field
+            name="installment_description"
+        >Deferred without interest promotion bimonthly. (*)</field>
+    </record>
+    <record id="paymentez_installments_type_21" model="paymentez.installments.type">
+        <field name="installment_type">21</field>
+        <field
+            name="installment_description"
+        >For Diners Club exclusive, deferred with and without interest</field>
+    </record>
+    <record id="paymentez_installments_type_22" model="paymentez.installments.type">
+        <field name="installment_type">22</field>
+        <field
+            name="installment_description"
+        >For Diners Club exclusive, deferred with and without interest.</field>
+    </record>
+    <record id="paymentez_installments_type_30" model="paymentez.installments.type">
+        <field name="installment_type">30</field>
+        <field
+            name="installment_description"
+        >Deferred with interest pay month by month.</field>
+    </record>
+    <record id="paymentez_installments_type_50" model="paymentez.installments.type">
+        <field name="installment_type">50</field>
+        <field
+            name="installment_description"
+        >Deferred without interest promotions (Supermaxi).</field>
+    </record>
+    <record id="paymentez_installments_type_51" model="paymentez.installments.type">
+        <field name="installment_type">51</field>
+        <field
+            name="installment_description"
+        >Deferred with interest (Cuota fácil)</field>
+    </record>
+    <record id="paymentez_installments_type_52" model="paymentez.installments.type">
+        <field name="installment_type">52</field>
+        <field
+            name="installment_description"
+        >Without interest (Rendecion Produmillas).</field>
+    </record>
+    <record id="paymentez_installments_type_53" model="paymentez.installments.type">
+        <field name="installment_type">53</field>
+        <field
+            name="installment_description"
+        >Without interest sale with promotions.</field>
+    </record>
+    <record id="paymentez_installments_type_70" model="paymentez.installments.type">
+        <field name="installment_type">70</field>
+        <field name="installment_description">Deferred special without interest.</field>
+    </record>
+    <record id="paymentez_installments_type_72" model="paymentez.installments.type">
+        <field name="installment_type">72</field>
+        <field
+            name="installment_description"
+        >Credit without interest (cte smax).</field>
+    </record>
+    <record id="paymentez_installments_type_73" model="paymentez.installments.type">
+        <field name="installment_type">73</field>
+        <field
+            name="installment_description"
+        >Special credit without interest (smax)</field>
+    </record>
+    <record id="paymentez_installments_type_74" model="paymentez.installments.type">
+        <field name="installment_type">74</field>
+        <field name="installment_description">Prepay without interest (smax).)</field>
+    </record>
+    <record id="paymentez_installments_type_75" model="paymentez.installments.type">
+        <field name="installment_type">73</field>
+        <field
+            name="installment_description"
+        >Deffered credit without interest (smax).</field>
+    </record>
+    <record id="paymentez_installments_type_90" model="paymentez.installments.type">
+        <field name="installment_type">90</field>
+        <field
+            name="installment_description"
+        >Without interest with months of grace (Supermaxi)</field>
+    </record>
+    <record id="payment_acquirer_cconnect" model="payment.acquirer">
+        <field name="name">Paymentez</field>
+        <field name="provider">paymentez</field>
+        <field name="company_id" ref="base.main_company" />
+        <field
+            name="image_128"
+            type="base64"
+            file="payment_paymentez/static/description/icon.png"
+        />
+        <field name="state">test</field>
+        <field name="display_as">Credit Card - Revolving credit</field>
+        <field
+            name="pre_msg"
+        >You will be prompted with Paymentez Payment Pop-Up for payment information.</field>
+        <field
+            name="paymentez_installments_type_id"
+            ref="payment_paymentez.paymentez_installments_type_0"
+        />
+        <field name="support_authorization">False</field>
+        <field name="support_fees_computation">False</field>
+        <field name="support_tokenization">False</field>
+        <field name="support_refund">partial</field>
+        <field name="paymentez_app_code">demo</field>
+        <field name="paymentez_app_key">demo</field>
+        <field name="paymentez_server_code">demo</field>
+        <field name="paymentez_server_key">demo</field>
+        <field
+            name="payment_icon_ids"
+            eval='[(6, 0, [ref("payment.payment_icon_cc_american_express"),
+                                                      ref("payment.payment_icon_cc_mastercard"),
+                                                      ref("payment.payment_icon_cc_discover"),
+                                                      ref("payment.payment_icon_cc_diners_club_intl"),
+                                                      ref("payment.payment_icon_cc_visa")])]'
+        />
+        <field name="country_ids" eval="[(6, 0, [ref('base.ec')])]" />
+    </record>
+    <record id="payment_acquirer_paymentez_with_interest" model="payment.acquirer">
+        <field name="name">Paymentez: Deferred with interest</field>
+        <field name="provider">paymentez</field>
+        <field name="company_id" ref="base.main_company" />
+        <field
+            name="image_128"
+            type="base64"
+            file="payment_paymentez/static/description/icon.png"
+        />
+        <field name="state">test</field>
+        <field name="display_as">Credit Card - Deferred with interest</field>
+        <field
+            name="pre_msg"
+        >You will be prompted with Paymentez Payment Pop-Up for payment information.</field>
+        <field
+            name="paymentez_installments_type_id"
+            ref="payment_paymentez.paymentez_installments_type_2"
+        />
+        <field name="support_authorization">False</field>
+        <field name="support_fees_computation">False</field>
+        <field name="support_tokenization">False</field>
+        <field name="support_refund">partial</field>
+        <field name="paymentez_app_code">demo</field>
+        <field name="paymentez_app_key">demo</field>
+        <field name="paymentez_server_code">demo</field>
+        <field name="paymentez_server_key">demo</field>
+        <field
+            name="payment_icon_ids"
+            eval='[(6, 0, [ref("payment.payment_icon_cc_american_express"),
+                                                      ref("payment.payment_icon_cc_mastercard"),
+                                                      ref("payment.payment_icon_cc_discover"),
+                                                      ref("payment.payment_icon_cc_diners_club_intl"),
+                                                      ref("payment.payment_icon_cc_visa")])]'
+        />
+        <field name="country_ids" eval="[(6, 0, [ref('base.ec')])]" />
+    </record>
+    <record id="payment_acquirer_paymentez_without_interest" model="payment.acquirer">
+        <field name="name">Paymentez: Deferred without interest</field>
+        <field name="provider">paymentez</field>
+        <field name="company_id" ref="base.main_company" />
+        <field
+            name="image_128"
+            type="base64"
+            file="payment_paymentez/static/description/icon.png"
+        />
+        <field name="state">test</field>
+        <field name="display_as">Credit Card - Deferred without interest</field>
+        <field
+            name="pre_msg"
+        >You will be prompted with Paymentez Payment Pop-Up for payment information.</field>
+        <field
+            name="paymentez_installments_type_id"
+            ref="payment_paymentez.paymentez_installments_type_3"
+        />
+        <field name="support_authorization">False</field>
+        <field name="support_fees_computation">False</field>
+        <field name="support_tokenization">False</field>
+        <field name="support_refund">partial</field>
+        <field name="paymentez_app_code">demo</field>
+        <field name="paymentez_app_key">demo</field>
+        <field name="paymentez_server_code">demo</field>
+        <field name="paymentez_server_key">demo</field>
+        <field
+            name="payment_icon_ids"
+            eval='[(6, 0, [ref("payment.payment_icon_cc_american_express"),
+                                                      ref("payment.payment_icon_cc_mastercard"),
+                                                      ref("payment.payment_icon_cc_discover"),
+                                                      ref("payment.payment_icon_cc_diners_club_intl"),
+                                                      ref("payment.payment_icon_cc_visa")])]'
+        />
+        <field name="country_ids" eval="[(6, 0, [ref('base.ec')])]" />
+    </record>
+
+</odoo>
