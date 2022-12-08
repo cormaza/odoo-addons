@@ -30,3 +30,8 @@ git:
     source_file: utm_chatter/i18n/utm_chatter.pot
     source_language: en
     translation_files_expression: 'utm_chatter/i18n/<lang>.po'
+  - filter_type: file
+    file_format: PO
+    source_file: utm_chatter/i18n/payment_paymentez.pot
+    source_language: en
+    translation_files_expression: 'payment_paymentez/i18n/<lang>.po'
