@@ -1,0 +1,257 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* payment_paymentez
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: payment_paymentez
+#. openerp-web
+#: code:addons/payment_paymentez/static/src/js/payment_form.js:0
+#, python-format
+msgid "An error occurred when displayed this payment form."
+msgstr ""
+
+#. module: payment_paymentez
+#: code:addons/payment_paymentez/models/payment_transaction.py:0
+#, python-format
+msgid "Can't refund transaction %(reference)s: detail: %(detail)s"
+msgstr ""
+
+#. module: payment_paymentez
+#: code:addons/payment_paymentez/models/payment_transaction.py:0
+#, python-format
+msgid "Can't refund transaction %(reference)s: type: %(type)s help:%(help)s"
+msgstr ""
+
+#. module: payment_paymentez
+#: model:ir.model.fields,field_description:payment_paymentez.field_paymentez_installments_type__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: payment_paymentez
+#: model:ir.model.fields,field_description:payment_paymentez.field_paymentez_installments_type__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: payment_paymentez
+#: model:payment.acquirer,display_as:payment_paymentez.payment_acquirer_paymentez_with_interest
+msgid "Credit Card - Deferred with interest"
+msgstr ""
+
+#. module: payment_paymentez
+#: model:payment.acquirer,display_as:payment_paymentez.payment_acquirer_paymentez_without_interest
+msgid "Credit Card - Deferred without interest"
+msgstr ""
+
+#. module: payment_paymentez
+#: model:payment.acquirer,display_as:payment_paymentez.payment_acquirer_cconnect
+msgid "Credit Card - Revolving credit"
+msgstr ""
+
+#. module: payment_paymentez
+#: model:ir.model.fields,field_description:payment_paymentez.field_paymentez_installments_type__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: payment_paymentez
+#: model:ir.model.fields,field_description:payment_paymentez.field_paymentez_installments_type__id
+msgid "ID"
+msgstr ""
+
+#. module: payment_paymentez
+#: model:ir.model.fields,field_description:payment_paymentez.field_paymentez_installments_type__installment_description
+msgid "Installment Description"
+msgstr ""
+
+#. module: payment_paymentez
+#: model:ir.model.fields,field_description:payment_paymentez.field_paymentez_installments_type__installment_state
+msgid "Installment State"
+msgstr ""
+
+#. module: payment_paymentez
+#: model:ir.model.fields,field_description:payment_paymentez.field_paymentez_installments_type__installment_type
+msgid "Installment Type"
+msgstr ""
+
+#. module: payment_paymentez
+#: model:ir.model.fields,field_description:payment_paymentez.field_payment_acquirer__paymentez_installments_type_id
+msgid "Installments type"
+msgstr ""
+
+#. module: payment_paymentez
+#: model:ir.model,name:payment_paymentez.model_account_move
+msgid "Journal Entry"
+msgstr ""
+
+#. module: payment_paymentez
+#: model:ir.model.fields,field_description:payment_paymentez.field_paymentez_installments_type____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: payment_paymentez
+#: model:ir.model.fields,field_description:payment_paymentez.field_paymentez_installments_type__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: payment_paymentez
+#: model:ir.model.fields,field_description:payment_paymentez.field_paymentez_installments_type__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: payment_paymentez
+#: model:ir.model,name:payment_paymentez.model_payment_acquirer
+msgid "Payment Acquirer"
+msgstr ""
+
+#. module: payment_paymentez
+#: model:ir.model,name:payment_paymentez.model_account_payment_method
+msgid "Payment Methods"
+msgstr ""
+
+#. module: payment_paymentez
+#: model:ir.model,name:payment_paymentez.model_payment_transaction
+msgid "Payment Transaction"
+msgstr ""
+
+#. module: payment_paymentez
+#: model:account.payment.method,name:payment_paymentez.payment_method_paymentez
+#: model:ir.model.fields.selection,name:payment_paymentez.selection__payment_acquirer__provider__paymentez
+#: model:payment.acquirer,name:payment_paymentez.payment_acquirer_cconnect
+msgid "Paymentez"
+msgstr ""
+
+#. module: payment_paymentez
+#: model:ir.model.fields,field_description:payment_paymentez.field_payment_acquirer__paymentez_app_code
+msgid "Paymentez App Code"
+msgstr ""
+
+#. module: payment_paymentez
+#: model:ir.model.fields,field_description:payment_paymentez.field_payment_acquirer__paymentez_app_key
+msgid "Paymentez App Key"
+msgstr ""
+
+#. module: payment_paymentez
+#: model:ir.model.fields,field_description:payment_paymentez.field_payment_acquirer__paymentez_server_code
+msgid "Paymentez Server Code"
+msgstr ""
+
+#. module: payment_paymentez
+#: model:ir.model.fields,field_description:payment_paymentez.field_payment_acquirer__paymentez_server_key
+msgid "Paymentez Server Key"
+msgstr ""
+
+#. module: payment_paymentez
+#: model:payment.acquirer,name:payment_paymentez.payment_acquirer_paymentez_with_interest
+msgid "Paymentez: Deferred with interest"
+msgstr ""
+
+#. module: payment_paymentez
+#: model:payment.acquirer,name:payment_paymentez.payment_acquirer_paymentez_without_interest
+msgid "Paymentez: Deferred without interest"
+msgstr ""
+
+#. module: payment_paymentez
+#: code:addons/payment_paymentez/models/payment_transaction.py:0
+#, python-format
+msgid "Paymentez: No transaction found matching reference %s."
+msgstr ""
+
+#. module: payment_paymentez
+#: model:ir.model.fields,field_description:payment_paymentez.field_payment_acquirer__provider
+msgid "Provider"
+msgstr ""
+
+#. module: payment_paymentez
+#: code:addons/payment_paymentez/models/payment_transaction.py:0
+#, python-format
+msgid "Response Paymentez refund %s"
+msgstr ""
+
+#. module: payment_paymentez
+#: model:ir.model,name:payment_paymentez.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
+#. module: payment_paymentez
+#. openerp-web
+#: code:addons/payment_paymentez/static/src/js/payment_form.js:0
+#, python-format
+msgid "Server Error"
+msgstr ""
+
+#. module: payment_paymentez
+#: model:ir.model.fields,help:payment_paymentez.field_payment_acquirer__provider
+msgid "The Payment Service Provider to use with this acquirer"
+msgstr ""
+
+#. module: payment_paymentez
+#: model:ir.model,name:payment_paymentez.model_paymentez_installments_type
+msgid "The installments type are only available for Ecuador."
+msgstr ""
+
+#. module: payment_paymentez
+#: code:addons/payment_paymentez/models/payment_transaction.py:0
+#, python-format
+msgid "Transaction is pending"
+msgstr ""
+
+#. module: payment_paymentez
+#: code:addons/payment_paymentez/models/payment_transaction.py:0
+#, python-format
+msgid "Transaction was rejected, please review your card details"
+msgstr ""
+
+#. module: payment_paymentez
+#: model_terms:payment.acquirer,pre_msg:payment_paymentez.payment_acquirer_cconnect
+#: model_terms:payment.acquirer,pre_msg:payment_paymentez.payment_acquirer_paymentez_with_interest
+#: model_terms:payment.acquirer,pre_msg:payment_paymentez.payment_acquirer_paymentez_without_interest
+msgid ""
+"You will be prompted with Paymentez Payment Pop-Up for payment information."
+msgstr ""
+
+#. module: payment_paymentez
+#: code:addons/payment_paymentez/controllers/main.py:0
+#: code:addons/payment_paymentez/controllers/main.py:0
+#, python-format
+msgid ""
+"Your have more than one VAT tax assigned on your order, please ask for "
+"support for page administrator"
+msgstr ""
+
+#. module: payment_paymentez
+#: model_terms:payment.acquirer,auth_msg:payment_paymentez.payment_acquirer_cconnect
+#: model_terms:payment.acquirer,auth_msg:payment_paymentez.payment_acquirer_paymentez_with_interest
+#: model_terms:payment.acquirer,auth_msg:payment_paymentez.payment_acquirer_paymentez_without_interest
+msgid "Your payment has been authorized."
+msgstr ""
+
+#. module: payment_paymentez
+#: model_terms:payment.acquirer,cancel_msg:payment_paymentez.payment_acquirer_cconnect
+#: model_terms:payment.acquirer,cancel_msg:payment_paymentez.payment_acquirer_paymentez_with_interest
+#: model_terms:payment.acquirer,cancel_msg:payment_paymentez.payment_acquirer_paymentez_without_interest
+msgid "Your payment has been cancelled."
+msgstr ""
+
+#. module: payment_paymentez
+#: model_terms:payment.acquirer,pending_msg:payment_paymentez.payment_acquirer_cconnect
+#: model_terms:payment.acquirer,pending_msg:payment_paymentez.payment_acquirer_paymentez_with_interest
+#: model_terms:payment.acquirer,pending_msg:payment_paymentez.payment_acquirer_paymentez_without_interest
+msgid ""
+"Your payment has been successfully processed but is waiting for approval."
+msgstr ""
+
+#. module: payment_paymentez
+#: model_terms:payment.acquirer,done_msg:payment_paymentez.payment_acquirer_cconnect
+#: model_terms:payment.acquirer,done_msg:payment_paymentez.payment_acquirer_paymentez_with_interest
+#: model_terms:payment.acquirer,done_msg:payment_paymentez.payment_acquirer_paymentez_without_interest
+msgid "Your payment has been successfully processed. Thank you!"
+msgstr ""
