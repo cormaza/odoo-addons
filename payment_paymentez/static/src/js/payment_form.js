@@ -37,6 +37,9 @@ odoo.define("payment_paymentez.payment_form", (require) => {
         },
 
         _processPayment: function (provider, paymentOptionId, flow) {
+            if (provider !== "paymentez") {
+                return this._super(...arguments);
+            }
             console.log(flow);
             var self = this;
             return this._rpc({
