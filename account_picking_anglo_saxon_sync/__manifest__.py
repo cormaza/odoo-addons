@@ -13,10 +13,7 @@
         "sale_stock",
         "purchase",
     ],
-    "data": [
-        "views/account_move_view.xml",
-        "views/stock_picking_view.xml",
-    ],
+    "data": [],
     "demo": [
         "demo/data.xml",
     ],
