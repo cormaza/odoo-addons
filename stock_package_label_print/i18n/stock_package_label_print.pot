@@ -1,0 +1,69 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* stock_package_label_print
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: stock_package_label_print
+#: model:ir.actions.report,print_report_name:stock_package_label_print.report_package_label
+msgid "'Package label for Picking - %s' % (object.name)"
+msgstr ""
+
+#. module: stock_package_label_print
+#: model_terms:ir.ui.view,arch_db:stock_package_label_print.report_splp
+msgid "<b>Dirección de Envío:</b>"
+msgstr ""
+
+#. module: stock_package_label_print
+#: model_terms:ir.ui.view,arch_db:stock_package_label_print.report_splp
+msgid "<b>RUC/CI:</b>"
+msgstr ""
+
+#. module: stock_package_label_print
+#: model_terms:ir.ui.view,arch_db:stock_package_label_print.report_splp
+msgid "<b>TELEFONO(S):</b>"
+msgstr ""
+
+#. module: stock_package_label_print
+#: model_terms:ir.ui.view,arch_db:stock_package_label_print.report_splp
+msgid "CIUDAD:"
+msgstr ""
+
+#. module: stock_package_label_print
+#: model_terms:ir.ui.view,arch_db:stock_package_label_print.report_splp
+msgid "CLIENTE:"
+msgstr ""
+
+#. module: stock_package_label_print
+#: model_terms:ir.ui.view,arch_db:stock_package_label_print.report_splp
+msgid "NOTA DE ENVIO:"
+msgstr ""
+
+#. module: stock_package_label_print
+#: model_terms:ir.ui.view,arch_db:stock_package_label_print.report_splp
+msgid "ORDEN DE PEDIDO:"
+msgstr ""
+
+#. module: stock_package_label_print
+#: model_terms:ir.ui.view,arch_db:stock_package_label_print.report_splp
+msgid "PROVINCIA:"
+msgstr ""
+
+#. module: stock_package_label_print
+#: model:ir.actions.report,name:stock_package_label_print.report_package_label
+msgid "Stock Package Label Print"
+msgstr ""
+
+#. module: stock_package_label_print
+#: model:ir.model,name:stock_package_label_print.model_report_stock_package_label_print_report_splp
+msgid "report.stock_package_label_print.report_splp"
+msgstr ""
