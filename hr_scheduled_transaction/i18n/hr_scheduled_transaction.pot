@@ -139,6 +139,11 @@ msgid "Fixed Inputs"
 msgstr ""
 
 #. module: hr_scheduled_transaction
+#: model:ir.model,name:hr_scheduled_transaction.model_hr_contract_fixed_inputs
+msgid "Fixed Inputs on Contracts"
+msgstr ""
+
+#. module: hr_scheduled_transaction
 #: model:ir.model.fields,field_description:hr_scheduled_transaction.field_hr_contract__fixed_inputs_ids
 msgid "Fixed inputs"
 msgstr ""
@@ -311,11 +316,6 @@ msgstr ""
 msgid ""
 "You cannot modify this record because there's more than one transaction with"
 " this code %s, you must modify on scheduled transactions"
-msgstr ""
-
-#. module: hr_scheduled_transaction
-#: model:ir.model,name:hr_scheduled_transaction.model_hr_contract_fixed_inputs
-msgid "hr.contract.fixed.inputs"
 msgstr ""
 
 #. module: hr_scheduled_transaction
