@@ -59,11 +59,11 @@ msgid "PROVINCIA:"
 msgstr ""
 
 #. module: stock_package_label_print
-#: model:ir.actions.report,name:stock_package_label_print.report_package_label
-msgid "Stock Package Label Print"
+#: model:ir.model,name:stock_package_label_print.model_report_stock_package_label_print_report_splp
+msgid "Report Package Label Print"
 msgstr ""
 
 #. module: stock_package_label_print
-#: model:ir.model,name:stock_package_label_print.model_report_stock_package_label_print_report_splp
-msgid "report.stock_package_label_print.report_splp"
+#: model:ir.actions.report,name:stock_package_label_print.report_package_label
+msgid "Stock Package Label Print"
 msgstr ""
