@@ -7,6 +7,7 @@ from odoo.exceptions import UserError
 class HrContractFixedInputs(models.Model):
 
     _name = "hr.contract.fixed.inputs"
+    _description = "Fixed Inputs on Contracts"
 
     contract_id = fields.Many2one(
         comodel_name="hr.contract", string="Contract", required=False
