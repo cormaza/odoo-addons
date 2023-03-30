@@ -13,9 +13,9 @@ Payroll Inputs Scheduled
 .. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
-.. |badge3| image:: https://img.shields.io/badge/github-cormaza%2Fodoo--addons-lightgray.png?logo=github
-    :target: https://github.com/cormaza/odoo-addons/tree/15.0/hr_scheduled_transaction
-    :alt: cormaza/odoo-addons
+.. |badge3| image:: https://img.shields.io/badge/github-cormaza%2Fwebsite_sale_hide_price_contactus-lightgray.png?logo=github
+    :target: https://github.com/cormaza/website_sale_hide_price_contactus/tree/15.0/hr_scheduled_transaction
+    :alt: cormaza/website_sale_hide_price_contactus
 
 |badge1| |badge2| |badge3| 
 
@@ -37,10 +37,10 @@ allowing assign this value on payslips quickly
 Bug Tracker
 ===========
 
-Bugs are tracked on `GitHub Issues <https://github.com/cormaza/odoo-addons/issues>`_.
+Bugs are tracked on `GitHub Issues <https://github.com/cormaza/website_sale_hide_price_contactus/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us smashing it by providing a detailed and welcomed
-`feedback <https://github.com/cormaza/odoo-addons/issues/new?body=module:%20hr_scheduled_transaction%0Aversion:%2015.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/cormaza/website_sale_hide_price_contactus/issues/new?body=module:%20hr_scheduled_transaction%0Aversion:%2015.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -60,6 +60,6 @@ Christopher Ormaza <chris.ormaza@gmail.com>
 Maintainers
 ~~~~~~~~~~~
 
-This module is part of the `cormaza/odoo-addons <https://github.com/cormaza/odoo-addons/tree/15.0/hr_scheduled_transaction>`_ project on GitHub.
+This module is part of the `cormaza/website_sale_hide_price_contactus <https://github.com/cormaza/website_sale_hide_price_contactus/tree/15.0/hr_scheduled_transaction>`_ project on GitHub.
 
 You are welcome to contribute.
