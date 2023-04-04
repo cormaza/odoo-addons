@@ -9,12 +9,12 @@
                 t-value="'Can you give more information about this product %s' % (product.display_name)"
             />
             <a
-                t-att-href="'/contactus?subject=%s&amp;description=%s' % (product.display_name, contact_us_message)"
+                t-att-href="'/contactus?name=%s&amp;description=%s' % (product.display_name, contact_us_message)"
                 target="_blank"
             >
             <div
                     class="alert alert-info"
-                    t-if="product.website_hide_price and (product.website_hide_price_message or website.website_hide_price_default_message) and user_authenticated"
+                    t-if="product.website_hide_price and (product.website_hide_price_message or website.website_hide_price_default_message)"
                 >
                 <i class="fa fa-info-circle" /> <span
                         t-esc="product.website_hide_price_message or website.website_hide_price_default_message"

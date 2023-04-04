@@ -21,7 +21,7 @@ class ProductTemplate(models.Model):
             if product.website_hide_price and product.website_published:
                 data.update(
                     {
-                        "price": "<a href='/contactus?subject=%(contact_name)s&description=%(contact_description)s' target='_blank'><span>%(product_name)s</span></a>"  # noqa: B950
+                        "price": "<a href='/contactus?name=%(contact_name)s&description=%(contact_description)s' target='_blank'><span>%(product_name)s</span></a>"  # noqa: B950
                         % {
                             "contact_name": product.display_name,
                             "contact_description": _(
