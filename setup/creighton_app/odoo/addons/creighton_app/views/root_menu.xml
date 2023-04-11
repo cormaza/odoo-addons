@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <menuitem
+        name="Creighton App"
+        id="menu_creighton_app"
+        groups="creighton_app.group_creighton_user,creighton_app.group_creighton_practitioner"
+        web_icon="creighton_app,static/description/icon.png"
+        sequence="50"
+    />
+</odoo>
