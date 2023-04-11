@@ -23,3 +23,21 @@ class ProductProduct(models.Model):
                 args = []
             args += self.env["sale.product.filter"].get_user_domains()
         return super(ProductProduct, self).search(args, offset, limit, order, count)
+
+
+class ProductTemplate(models.Model):
+
+    _inherit = "product.template"
+
+    @api.model
+    def name_search(self, name="", args=None, operator="ilike", limit=100):
+        if self.env["sale.product.filter"].get_user_domains():
+            args = self.env["sale.product.filter"].get_user_domains()
+        return super(ProductTemplate, self).name_search(name, args, operator, limit)
+
+    def search(self, args, offset=0, limit=None, order=None, count=False):
+        if self.env["sale.product.filter"].get_user_domains():
+            if not args:
+                args = []
+            args += self.env["sale.product.filter"].get_user_domains()
+        return super(ProductTemplate, self).search(args, offset, limit, order, count)

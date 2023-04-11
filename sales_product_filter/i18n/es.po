@@ -1,0 +1,111 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sales_product_filter
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-04-11 16:27+0000\n"
+"PO-Revision-Date: 2023-04-11 11:30-0500\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 3.2.2\n"
+
+#. module: sales_product_filter
+#: model:ir.model.fields,field_description:sales_product_filter.field_sale_product_filter__create_uid
+msgid "Created by"
+msgstr "Creado Por"
+
+#. module: sales_product_filter
+#: model:ir.model.fields,field_description:sales_product_filter.field_sale_product_filter__create_date
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: sales_product_filter
+#: model:ir.model.fields,field_description:sales_product_filter.field_sale_product_filter__name
+msgid "Description"
+msgstr "Descripción"
+
+#. module: sales_product_filter
+#: model:ir.model.fields,field_description:sales_product_filter.field_sale_product_filter__display_name
+msgid "Display Name"
+msgstr "Nombre Mostrado"
+
+#. module: sales_product_filter
+#: model_terms:ir.ui.view,arch_db:sales_product_filter.view_sale_product_filter_form
+msgid "Domain"
+msgstr "Dominio"
+
+#. module: sales_product_filter
+#: model:ir.model.fields,field_description:sales_product_filter.field_sale_product_filter__filter_domain
+msgid "Filter Domain"
+msgstr "Filtro Dominio"
+
+#. module: sales_product_filter
+#: model:ir.model.fields,field_description:sales_product_filter.field_sale_product_filter__id
+msgid "ID"
+msgstr "ID"
+
+#. module: sales_product_filter
+#: model:ir.model.fields,field_description:sales_product_filter.field_sale_product_filter____last_update
+msgid "Last Modified on"
+msgstr "Última Modificación en"
+
+#. module: sales_product_filter
+#: model:ir.model.fields,field_description:sales_product_filter.field_sale_product_filter__write_uid
+msgid "Last Updated by"
+msgstr "Última Actualización por"
+
+#. module: sales_product_filter
+#: model:ir.model.fields,field_description:sales_product_filter.field_sale_product_filter__write_date
+msgid "Last Updated on"
+msgstr "Última Actualización en"
+
+#. module: sales_product_filter
+#: model:ir.model,name:sales_product_filter.model_product_product
+#: model:ir.model.fields,field_description:sales_product_filter.field_sale_order_line__product_id
+msgid "Product"
+msgstr "Producto"
+
+#. module: sales_product_filter
+#: model:ir.actions.act_window,name:sales_product_filter.sale_product_filter_action
+#: model:ir.ui.menu,name:sales_product_filter.menu_sale_product_filter_action
+msgid "Product Filters"
+msgstr "Filtros de Productos"
+
+#. module: sales_product_filter
+#: model:ir.model,name:sales_product_filter.model_product_template
+msgid "Product Template"
+msgstr "Plantilla de producto"
+
+#. module: sales_product_filter
+#: model_terms:ir.ui.view,arch_db:sales_product_filter.view_sale_product_filter_form
+msgid "Sale Product Filter"
+msgstr "Filtro de Productos para Ventas"
+
+#. module: sales_product_filter
+#: model_terms:ir.ui.view,arch_db:sales_product_filter.view_sale_product_filter_tree
+msgid "Sale Product Filters"
+msgstr "Filtros de Productos en Ventas"
+
+#. module: sales_product_filter
+#: model:ir.model,name:sales_product_filter.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Línea de pedido de venta"
+
+#. module: sales_product_filter
+#: model:ir.model.fields,field_description:sales_product_filter.field_sale_product_filter__user_ids
+#: model_terms:ir.ui.view,arch_db:sales_product_filter.view_sale_product_filter_form
+msgid "Users"
+msgstr "Usuarios"
+
+#. module: sales_product_filter
+#: model:ir.model,name:sales_product_filter.model_sale_product_filter
+msgid "sale.product.filter"
+msgstr "sale.product.filter"
