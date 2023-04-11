@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+creighton_daily_register_user,creighton_daily_register_user,model_creighton_daily_register,creighton_app.group_creighton_user,1,1,1,1
+creighton_daily_register_practitioner,creighton_daily_register_practitioner,model_creighton_daily_register,creighton_app.group_creighton_practitioner,1,1,0,0

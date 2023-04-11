@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_sale_product_filter_tree" model="ir.ui.view">
+        <field name="name">sale.product.filter.tree</field>
+        <field name="model">sale.product.filter</field>
+        <field name="arch" type="xml">
+            <tree string="Sale Product Filters">
+                <field name="name" />
+            </tree>
+        </field>
+    </record>
+    <record id="view_sale_product_filter_form" model="ir.ui.view">
+        <field name="name">sale.product.filter.form</field>
+        <field name="model">sale.product.filter</field>
+        <field name="arch" type="xml">
+            <form string="Sale Product Filter">
+                <group>
+                    <field name="name" />
+                </group>
+                <notebook>
+                    <page string="Domain">
+                        <field
+                            name="filter_domain"
+                            widget="domain"
+                            options="{'model': 'product.product', 'in_dialog': True}"
+                        />
+                    </page>
+                    <page string="Users">
+                        <field name="user_ids" />
+                    </page>
+                </notebook>
+            </form>
+        </field>
+    </record>
+    <record id="view_sale_product_filter_search" model="ir.ui.view">
+        <field name="name">sale.product.filter.search</field>
+        <field name="model">sale.product.filter</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+                <field name="user_ids" />
+            </search>
+        </field>
+    </record>
+    <record id="sale_product_filter_action" model="ir.actions.act_window">
+        <field name="name">Product Filters</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.product.filter</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem
+        id="menu_sale_product_filter_action"
+        parent="sale.product_menu_catalog"
+        action="sale_product_filter_action"
+        sequence="150"
+    />
+</odoo>

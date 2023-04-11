@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates id="template" xml:space="preserve">
+    <t t-name="field.creighton">
+        <div>
+            <img t-att-height="widget.height || 100" />
+        </div>
+    </t>
+</templates>

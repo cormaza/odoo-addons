@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model="ir.module.category" id="module_category_creighton_app">
+        <field name="name">Creighton App</field>
+        <field name="sequence">7</field>
+    </record>
+    <record id="group_creighton_user" model="res.groups">
+        <field name="name">User</field>
+        <field name="category_id" ref="module_category_creighton_app" />
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]" />
+    </record>
+    <record id="group_creighton_practitioner" model="res.groups">
+        <field name="name">Practitioner</field>
+        <field name="category_id" ref="module_category_creighton_app" />
+        <field name="implied_ids" eval="[(4, ref('group_creighton_user'))]" />
+    </record>
+    <record id="base.user_admin" model="res.users">
+        <field
+            name="groups_id"
+            eval="[(4, ref('creighton_app.group_creighton_practitioner'))]"
+        />
+    </record>
+</odoo>

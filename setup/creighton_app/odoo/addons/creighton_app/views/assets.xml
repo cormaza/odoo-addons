@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <template
+            id="assets_backend"
+            name="creighton widget assets"
+            inherit_id="web.assets_backend"
+        >
+            <xpath expr="." position="inside">
+                <script
+                    type="text/javascript"
+                    src="/creighton_app/static/src/js/widget_creighton.js"
+                />
+            </xpath>
+        </template>
+    </data>
+</odoo>
