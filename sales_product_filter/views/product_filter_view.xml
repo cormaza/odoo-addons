@@ -28,6 +28,9 @@
                     <page string="Users">
                         <field name="user_ids" />
                     </page>
+                    <page string="Groups">
+                        <field name="group_ids" />
+                    </page>
                 </notebook>
             </form>
         </field>

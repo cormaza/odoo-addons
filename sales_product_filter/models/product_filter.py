@@ -9,13 +9,18 @@ class SaleProductFilter(models.Model):
     name = fields.Char(string="Description", required=True)
     filter_domain = fields.Char(string="Filter Domain", required=True)
     user_ids = fields.Many2many(comodel_name="res.users", string="Users")
+    group_ids = fields.Many2many(comodel_name="res.groups", string="Groups")
 
     @api.model
     def get_user_domains(self):
         current_user = self.env.user
-        user_domains = self.search([("user_ids", "=", current_user.id)]).mapped(
-            "filter_domain"
-        )
+        user_domains = self.search(
+            [
+                "|",
+                ("user_ids", "=", current_user.id),
+                ("group_ids", "in", current_user.groups_id.ids),
+            ]
+        ).mapped("filter_domain")
         if not user_domains:
             return []
         return expression.OR([safe_eval(domain) for domain in user_domains])
