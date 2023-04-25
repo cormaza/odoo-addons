@@ -6,7 +6,7 @@
             <t t-set="user_authenticated" t-value="user_id != website.user_id" />
             <t
                 t-set="contact_us_message"
-                t-value="'Can you give more information about this product %s' % (product.display_name)"
+                t-value="_('Can you give more information about this product %s') % (product.display_name)"
             />
             <a
                 t-att-href="'/contactus?name=%s&amp;description=%s' % (product.display_name, contact_us_message)"
