@@ -35,12 +35,8 @@ jobs:
       fail-fast: false
       matrix:
         include:
-<<<<<<< before updating
           - container: ghcr.io/cormaza/py3.8-odoo15.0:latest
             makepot: "true"
-=======
-          - container: ghcr.io/oca/oca-ci/py3.8-odoo15.0:latest
->>>>>>> after updating
             name: test with Odoo
           - container: ghcr.io/cormaza/py3.8-ocb15.0:latest
             name: test with OCB
