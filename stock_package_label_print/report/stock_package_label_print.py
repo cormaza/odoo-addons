@@ -2,7 +2,6 @@ from odoo import api, models
 
 
 class ReportStockPackageLabelPrint(models.AbstractModel):
-
     _name = "report.stock_package_label_print.report_splp"
     _description = "Report Package Label Print"
 
