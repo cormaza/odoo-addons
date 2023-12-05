@@ -19,5 +19,5 @@
         "report/report_stock_package_label_print.xml",
     ],
     "demo": [],
-    "license": "LGPL-3",
+    "license": "AGPL-3",
 }
