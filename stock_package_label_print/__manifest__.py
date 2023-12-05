@@ -6,11 +6,11 @@
     "author": "Christopher Ormaza",
     "website": "https://github.com/cormaza/odoo-addons",
     "category": "Report",
-    "version": "15.0.1.0.0",
+    "version": "16.0.1.0.0",
     "depends": [
         "base",
         "stock",
-        "base_address_city",
+        "base_address_extended",
         "product",
         "stock_picking_invoice_link",
     ],

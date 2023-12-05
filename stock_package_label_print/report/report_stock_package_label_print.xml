@@ -8,9 +8,9 @@
                     <div class="row">
                         <div class="col-xs-3">
                             <img
-                                tt-if="d.company_id.logo"
-                                t-att-src="'data:image/png;base64,%s' % to_text(d.company_id.logo)"
-                                class="pull-left"
+                                t-if="d.company_id.logo"
+                                t-att-src="image_data_uri(d.company_id.logo)"
+                                class="company-logo"
                                 style="max-height: 35px;"
                             />
                         </div>
