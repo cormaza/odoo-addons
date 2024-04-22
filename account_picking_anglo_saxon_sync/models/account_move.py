@@ -2,7 +2,6 @@ from odoo import api, fields, models
 
 
 class AccountMove(models.Model):
-
     _inherit = "account.move"
 
     anglo_saxon_adjusted_move_id = fields.Many2one(
@@ -11,7 +10,6 @@ class AccountMove(models.Model):
 
 
 class AccountMoveLine(models.Model):
-
     _inherit = "account.move.line"
 
     anglo_saxon_adjusted_line_id = fields.Many2one(

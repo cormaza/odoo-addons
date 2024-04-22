@@ -4,12 +4,10 @@ from odoo.tools import float_is_zero
 
 
 class StockPicking(models.Model):
-
     _inherit = "stock.picking"
 
 
 class StockMove(models.Model):
-
     _inherit = "stock.move"
 
     def _sync_anglo_saxon_values(self):
