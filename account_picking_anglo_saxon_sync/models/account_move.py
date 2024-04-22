@@ -1,5 +1,7 @@
 from odoo import api, fields, models
 
+# flake8: noqa: B023
+
 
 class AccountMove(models.Model):
     _inherit = "account.move"
@@ -32,7 +34,7 @@ class AccountMoveLine(models.Model):
     def _compute_anglo_saxon_line(self):
         for rec in self:
             anglo_saxon_line_ids = rec.move_id.line_ids.filtered(
-                lambda x: x.is_anglo_saxon_line
+                lambda x: x.display_type == "cogs"
                 and x.product_id == rec.product_id
                 and x.product_uom_id == rec.product_uom_id
                 and x.quantity == rec.quantity

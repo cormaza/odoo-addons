@@ -63,6 +63,10 @@ class StockMove(models.Model):
                                 "price_unit": prices_difference * -1,
                             }
                         )
+                        credit_line.pop("balance")
+                        credit_line.pop("amount_currency")
+                        credit_line.pop("price_total")
+                        credit_line.pop("price_subtotal")
                         debit_line.update(
                             {
                                 "anglo_saxon_adjusted_line_id": credit_line.get(
@@ -73,6 +77,10 @@ class StockMove(models.Model):
                                 "price_unit": prices_difference * -1,
                             }
                         )
+                        debit_line.pop("balance")
+                        debit_line.pop("amount_currency")
+                        debit_line.pop("price_total")
+                        debit_line.pop("price_subtotal")
                         for column in MAGIC_COLUMNS:
                             if column in credit_line:
                                 credit_line.pop(column)

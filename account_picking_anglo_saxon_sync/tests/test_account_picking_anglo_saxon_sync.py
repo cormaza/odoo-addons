@@ -1,25 +1,59 @@
 from odoo import fields
-from odoo.tests import Form, TransactionCase
+from odoo.tests import Form, tagged
+
+from odoo.addons.stock_account.tests.test_anglo_saxon_valuation_reconciliation_common import (  # noqa: E501
+    ValuationReconciliationTestCommon,
+)
 
 
-class TestAccountPickingAngloSaxonSync(TransactionCase):
-    def setUp(self):
-        super().setUp()
-        self.product_uom = self.env.ref("uom.product_uom_unit")
-        self.company = self.env.ref("base.main_company")
-        self.company.write({"anglo_saxon_accounting": True})
-        self.stock_picking_type_out = self.env.ref("stock.picking_type_out")
-        self.stock_picking_type_in = self.env.ref("stock.picking_type_in")
-        self.stock_location_id = self.env.ref("stock.stock_location_stock")
-        self.stock_location_customer_id = self.env.ref("stock.stock_location_customers")
-        self.stock_location_supplier_id = self.env.ref("stock.stock_location_suppliers")
-        self.supplier = self.env["res.partner"].create({"name": "Test supplier"})
-        self.customer = self.env["res.partner"].create({"name": "Test customer"})
+@tagged("post_install", "-at_install")
+class TestAccountPickingAngloSaxonSync(ValuationReconciliationTestCommon):
+    @classmethod
+    def setUpClass(cls, chart_template_ref=None):
+        super().setUpClass(chart_template_ref=chart_template_ref)
+        cls.env = cls.env(
+            context=dict(
+                cls.env.context,
+                mail_create_nolog=True,
+                mail_create_nosubscribe=True,
+                mail_notrack=True,
+                no_reset_password=True,
+                tracking_disable=True,
+            )
+        )
 
-        self.fifo_product = self.env.ref(
+        cls.stock_account_product_categ_avg = cls.env["product.category"].create(
+            {
+                "name": "Test category",
+                "property_valuation": "real_time",
+                "property_cost_method": "average",
+                "property_stock_valuation_account_id": cls.company_data[
+                    "default_account_stock_valuation"
+                ].id,
+                "property_stock_account_input_categ_id": cls.company_data[
+                    "default_account_stock_in"
+                ].id,
+                "property_stock_account_output_categ_id": cls.company_data[
+                    "default_account_stock_out"
+                ].id,
+            }
+        )
+
+        cls.product_uom = cls.env.ref("uom.product_uom_unit")
+        cls.company = cls.env.ref("base.main_company")
+        cls.env.company.write({"anglo_saxon_accounting": True})
+        cls.stock_picking_type_out = cls.env.ref("stock.picking_type_out")
+        cls.stock_picking_type_in = cls.env.ref("stock.picking_type_in")
+        cls.stock_location_id = cls.env.ref("stock.stock_location_stock")
+        cls.stock_location_customer_id = cls.env.ref("stock.stock_location_customers")
+        cls.stock_location_supplier_id = cls.env.ref("stock.stock_location_suppliers")
+        cls.supplier = cls.env["res.partner"].create({"name": "Test supplier"})
+        cls.customer = cls.env["res.partner"].create({"name": "Test customer"})
+
+        cls.fifo_product = cls.env.ref(
             "account_picking_anglo_saxon_sync.fifo_product_demo"
         )
-        self.avg_product = self.env.ref(
+        cls.avg_product = cls.env.ref(
             "account_picking_anglo_saxon_sync.avg_product_demo"
         )
 
@@ -27,7 +61,7 @@ class TestAccountPickingAngloSaxonSync(TransactionCase):
         """Do picking with only one move on the given date."""
         picking.action_confirm()
         picking.action_assign()
-        picking.move_lines.quantity_done = qty
+        picking.move_ids.quantity_done = qty
         res = picking.button_validate()
         if isinstance(res, dict) and res:
             backorder_wiz_id = res["res_id"]
@@ -61,6 +95,15 @@ class TestAccountPickingAngloSaxonSync(TransactionCase):
         return purchase
 
     def test_01_invoice_before_picking(self):
+        self.fifo_product.write(
+            {"standard_price": 10.0, "categ_id": self.stock_account_product_categ.id}
+        )
+        self.avg_product.write(
+            {
+                "standard_price": 10.0,
+                "categ_id": self.stock_account_product_categ_avg.id,
+            }
+        )
         self.assertEqual(self.fifo_product.standard_price, 10.0)
         po1 = self._make_purchase_order(self.fifo_product, 10.0, 15.0)
         self._do_picking(po1.picking_ids, fields.Datetime.now(), 10.0)
@@ -74,11 +117,11 @@ class TestAccountPickingAngloSaxonSync(TransactionCase):
         so1 = self._make_sale_order(self.fifo_product + self.avg_product, 1.0)
         self._do_picking(so1.picking_ids, fields.Datetime.now(), 1.0)
 
-        fifo_layers = so1.picking_ids.move_lines.filtered(
+        fifo_layers = so1.picking_ids.move_ids.filtered(
             lambda x: x.product_id == self.fifo_product
         ).stock_valuation_layer_ids
         self.assertEqual(sum(fifo_layers.mapped("value")), -15.0)
-        avg_layers = so1.picking_ids.move_lines.filtered(
+        avg_layers = so1.picking_ids.move_ids.filtered(
             lambda x: x.product_id == self.avg_product
         ).stock_valuation_layer_ids
         self.assertEqual(sum(avg_layers.mapped("value")), -15.0)
