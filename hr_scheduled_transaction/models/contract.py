@@ -5,7 +5,6 @@ from odoo.exceptions import UserError
 
 
 class HrContractFixedInputs(models.Model):
-
     _name = "hr.contract.fixed.inputs"
     _description = "Fixed Inputs on Contracts"
 
@@ -99,7 +98,6 @@ class HrContractFixedInputs(models.Model):
 
 
 class HrContract(models.Model):
-
     _inherit = "hr.contract"
 
     fixed_inputs_ids = fields.One2many(

@@ -10,7 +10,6 @@ _FIELDS_TO_CHECK = [
 
 
 class HrScheduledTransaction(models.Model):
-
     _name = "hr.scheduled.transaction"
     _description = "Scheduled Transaction"
 

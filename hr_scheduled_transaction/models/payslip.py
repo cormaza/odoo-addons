@@ -5,7 +5,6 @@ from odoo.exceptions import UserError
 
 
 class HrPayslipInputType(models.Model):
-
     _inherit = "hr.payslip.input.type"
 
     category_id = fields.Many2one(
@@ -128,7 +127,6 @@ class HrPayslipInputType(models.Model):
 
 
 class HrSalaryRule(models.Model):
-
     _inherit = "hr.salary.rule"
 
     input_type_id = fields.Many2one(
@@ -140,7 +138,6 @@ class HrSalaryRule(models.Model):
 
 
 class HrPayslipInput(models.Model):
-
     _inherit = "hr.payslip.input"
 
     transaction_ids = fields.Many2many(
@@ -170,7 +167,6 @@ class HrPayslipInput(models.Model):
 
 
 class HrPayslip(models.Model):
-
     _inherit = "hr.payslip"
 
     def compute_sheet(self):
