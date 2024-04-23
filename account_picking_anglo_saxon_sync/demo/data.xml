@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record model="product.category" id="fifo_categ">
+        <field name="name">FIFO Category</field>
+        <field name="property_cost_method">fifo</field>
+        <field name="property_valuation">real_time</field>
+    </record>
+
+    <record model="product.category" id="avg_categ">
+        <field name="name">FIFO Category</field>
+        <field name="property_cost_method">average</field>
+        <field name="property_valuation">real_time</field>
+    </record>
+
+    <record model="product.product" id="fifo_product_demo">
+        <field name="name">Fifo Product</field>
+        <field name="default_code">fifo_product_demo</field>
+        <field name="categ_id" ref="fifo_categ" />
+        <field name="standard_price">10.0</field>
+        <field name="list_price">60.0</field>
+        <field name="type">product</field>
+    </record>
+
+    <record model="product.product" id="avg_product_demo">
+        <field name="name">Avg Product</field>
+        <field name="default_code">avg_product_demo</field>
+        <field name="categ_id" ref="avg_categ" />
+        <field name="standard_price">10.0</field>
+        <field name="list_price">60.0</field>
+        <field name="type">product</field>
+    </record>
+
+
+</odoo>
