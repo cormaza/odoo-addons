@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 15.0+e\n"
+"Project-Id-Version: Odoo Server 16.0+e\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -22,12 +22,14 @@ msgid "Amount"
 msgstr ""
 
 #. module: hr_scheduled_transaction
+#. odoo-python
 #: code:addons/hr_scheduled_transaction/models/scheduled_transaction.py:0
 #, python-format
 msgid "Amount must be bigger than zero"
 msgstr ""
 
 #. module: hr_scheduled_transaction
+#. odoo-python
 #: code:addons/hr_scheduled_transaction/models/contract.py:0
 #, python-format
 msgid "Amount of fixed input %(input_name)s must be bigger than zero"
@@ -87,6 +89,7 @@ msgid "Day To Apply"
 msgstr ""
 
 #. module: hr_scheduled_transaction
+#. odoo-python
 #: code:addons/hr_scheduled_transaction/models/contract.py:0
 #, python-format
 msgid "Day to apply of fixed input %s must be between 1 or 31"
@@ -104,6 +107,7 @@ msgid "Display Name"
 msgstr ""
 
 #. module: hr_scheduled_transaction
+#. odoo-python
 #: code:addons/hr_scheduled_transaction/models/payslip.py:0
 #, python-format
 msgid "Don't include spaces characters in code of %s"
@@ -126,6 +130,7 @@ msgid "End Date"
 msgstr ""
 
 #. module: hr_scheduled_transaction
+#. odoo-python
 #: code:addons/hr_scheduled_transaction/models/contract.py:0
 #, python-format
 msgid ""
@@ -291,6 +296,7 @@ msgid "Start Date"
 msgstr ""
 
 #. module: hr_scheduled_transaction
+#. odoo-python
 #: code:addons/hr_scheduled_transaction/models/contract.py:0
 #, python-format
 msgid ""
@@ -311,6 +317,7 @@ msgid "Type"
 msgstr ""
 
 #. module: hr_scheduled_transaction
+#. odoo-python
 #: code:addons/hr_scheduled_transaction/models/payslip.py:0
 #, python-format
 msgid ""
