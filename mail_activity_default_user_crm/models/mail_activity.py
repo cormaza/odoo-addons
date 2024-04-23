@@ -2,7 +2,6 @@ from odoo import api, models
 
 
 class MailActivity(models.Model):
-
     _inherit = "mail.activity"
 
     @api.model
