@@ -7,7 +7,7 @@ class CalendarEvent(models.Model):
     @api.model
     def _default_partners(self):
         user_model = self.env["res.users"]
-        partners = super(CalendarEvent, self)._default_partners()
+        partners = super()._default_partners()
         active_id = self._context.get("default_res_id")
         if (
             self._context.get("default_res_model") == "crm.lead"

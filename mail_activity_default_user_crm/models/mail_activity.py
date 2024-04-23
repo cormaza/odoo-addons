@@ -6,14 +6,14 @@ class MailActivity(models.Model):
 
     @api.model
     def default_get(self, fields):
-        values = super(MailActivity, self).default_get(fields)
+        values = super().default_get(fields)
         if self.env.context.get("default_res_model") == "crm.lead":
             lead = self.env["crm.lead"].browse(self.env.context.get("default_res_id"))
             values["user_id"] = lead.user_id.id
         return values
 
     def action_create_calendar_event(self):
-        res = super(MailActivity, self).action_create_calendar_event()
+        res = super().action_create_calendar_event()
         if res.get("context", {}).get("default_res_model") == "crm.lead":
             res.get("context", {}).update(
                 {
@@ -34,4 +34,4 @@ class MailActivity(models.Model):
             if self.activity_type_id.default_note:
                 self.note = self.activity_type_id.default_note
         else:
-            return super(MailActivity, self)._onchange_activity_type_id()
+            return super()._onchange_activity_type_id()
