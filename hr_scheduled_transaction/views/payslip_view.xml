@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="hr_payslip_inherit_form_view">
+        <field name="name">hr.payslip.form</field>
+        <field name="model">hr.payslip</field>
+        <field name="inherit_id" ref="hr_payroll.view_hr_payslip_form" />
+        <field name="arch" type="xml">
+            <div name="button_box" position="inside">
+                <button
+                    class="oe_stat_button"
+                    type="object"
+                    name="action_show_current_transactions"
+                    icon="fa-book"
+                >
+                    <field
+                        name="l10n_ec_count_transactions"
+                        string="Transactions"
+                        widget="statinfo"
+                    />
+                </button>
+            </div>
+            <xpath
+                expr="/form/sheet/notebook//field[@name='input_line_ids']/tree/field[@name='input_type_id']"
+                position="after"
+            >
+                <field name="transaction_ids" invisible="1" widget="many2many_tags" />
+            </xpath>
+            <xpath
+                expr="/form/sheet/notebook//field[@name='input_line_ids']/form//field[@name='input_type_id']"
+                position="after"
+            >
+                <field name="transaction_ids" invisible="1" widget="many2many_tags" />
+            </xpath>
+        </field>
+    </record>
+    <!-- Inherit Form View to Modify it -->
+    <record id="hr_payslip_input_type_form_view" model="ir.ui.view">
+        <field name="name">hr.payslip.input.type.form</field>
+        <field name="model">hr.payslip.input.type</field>
+        <field name="inherit_id" ref="hr_payroll.hr_payslip_input_type_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='code']" position="after">
+                <field name="category_id" options="{'no_create': True}" required="1" />
+                <field name="rule_count" invisible="1" />
+                <field name="analytic_account_id" />
+                <field name="not_computed_in_net" />
+            </xpath>
+            <xpath expr="//field[@name='country_id']" position="after">
+                <field name="account_debit_id" />
+                <field name="account_credit_id" />
+            </xpath>
+            <xpath expr="//field[@name='name']/../.." position="before">
+                <div class="oe_button_box" name="expense_button_box">
+                    <button
+                        name="action_show_rules"
+                        type="object"
+                        string="Salary Rules"
+                        class="oe_stat_button"
+                        icon="fa-files-o"
+                        attrs="{'invisible': [('rule_count', '&gt;', 0)]}"
+                    />
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
