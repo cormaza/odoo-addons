@@ -1,9 +1,10 @@
+# flake8: noqa: B023
+
 from odoo import api, fields, models
 from odoo.fields import Command
 
 
 class CalendarEvent(models.Model):
-
     _inherit = "calendar.event"
 
     optional_create_attendees = fields.Boolean(
