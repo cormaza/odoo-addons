@@ -34,7 +34,7 @@ class TestSaleMarginQuotationSign(TransactionCase):
                 "picking_type_id": self.stock_picking_type_in.id,
                 "location_id": self.stock_location_supplier_id.id,
                 "location_dest_id": self.stock_location_id.id,
-                "move_lines": [
+                "move_ids": [
                     (
                         0,
                         0,
@@ -56,7 +56,7 @@ class TestSaleMarginQuotationSign(TransactionCase):
     def _do_picking(self, picking, qty):
         picking.action_confirm()
         picking.action_assign()
-        picking.move_lines.quantity_done = qty
+        picking.move_ids.quantity_done = qty
         res = picking.button_validate()
         if isinstance(res, dict) and res:
             backorder_wiz_id = res["res_id"]
@@ -71,12 +71,12 @@ class TestSaleMarginQuotationSign(TransactionCase):
         picking1 = self._create_receipt(self.product1, 10, 10)
         self._do_picking(picking1, 10)
         self.assertEqual(
-            100, sum(picking1.mapped("move_lines.stock_valuation_layer_ids.value"))
+            100, sum(picking1.mapped("move_ids.stock_valuation_layer_ids.value"))
         )
         picking2 = self._create_receipt(self.product1, 10, 15)
         self._do_picking(picking2, 10)
         self.assertEqual(
-            150, sum(picking2.mapped("move_lines.stock_valuation_layer_ids.value"))
+            150, sum(picking2.mapped("move_ids.stock_valuation_layer_ids.value"))
         )
 
         self.product1.standard_price = 50.0
