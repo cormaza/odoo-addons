@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 15.0+e\n"
+"Project-Id-Version: Odoo Server 16.0+e\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -36,19 +36,18 @@ msgid "Anglo saxon adjusted lines"
 msgstr ""
 
 #. module: account_picking_anglo_saxon_sync
-#: model:product.product,name:account_picking_anglo_saxon_sync.avg_product_demo
 #: model:product.template,name:account_picking_anglo_saxon_sync.avg_product_demo_product_template
 msgid "Avg Product"
 msgstr ""
 
 #. module: account_picking_anglo_saxon_sync
+#. odoo-python
 #: code:addons/account_picking_anglo_saxon_sync/models/stock_picking.py:0
 #, python-format
 msgid "COGS Alignment - %s"
 msgstr ""
 
 #. module: account_picking_anglo_saxon_sync
-#: model:product.product,name:account_picking_anglo_saxon_sync.fifo_product_demo
 #: model:product.template,name:account_picking_anglo_saxon_sync.fifo_product_demo_product_template
 msgid "Fifo Product"
 msgstr ""
@@ -71,12 +70,4 @@ msgstr ""
 #. module: account_picking_anglo_saxon_sync
 #: model:ir.model,name:account_picking_anglo_saxon_sync.model_stock_picking
 msgid "Transfer"
-msgstr ""
-
-#. module: account_picking_anglo_saxon_sync
-#: model:product.product,uom_name:account_picking_anglo_saxon_sync.avg_product_demo
-#: model:product.product,uom_name:account_picking_anglo_saxon_sync.fifo_product_demo
-#: model:product.template,uom_name:account_picking_anglo_saxon_sync.avg_product_demo_product_template
-#: model:product.template,uom_name:account_picking_anglo_saxon_sync.fifo_product_demo_product_template
-msgid "Units"
 msgstr ""
