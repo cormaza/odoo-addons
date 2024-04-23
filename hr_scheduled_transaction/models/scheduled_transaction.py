@@ -87,18 +87,20 @@ class HrScheduledTransaction(models.Model):
                 slip_model._recalc_payslip_change(rec.employee_id.id, rec.date)
         return res
 
-    @api.model
-    def create(self, vals):
+    @api.model_create_multi
+    def create(self, values):
         slip_model = self.env["hr.payslip"].with_context(no_recalc_work_entries=True)
-        rec = super(HrScheduledTransaction, self).create(vals)
+        records = super().create(values)
         recompute = False
         for field in _FIELDS_TO_CHECK:
-            if field in vals:
-                recompute = True
-                break
-        if not self.env.context.get("stop_recursion", False) and recompute:
-            slip_model._recalc_payslip_change(rec.employee_id.id, rec.date)
-        return rec
+            for vals in values:
+                if field in vals:
+                    recompute = True
+                    break
+        for rec in records:
+            if not self.env.context.get("stop_recursion", False) and recompute:
+                slip_model._recalc_payslip_change(rec.employee_id.id, rec.date)
+        return records
 
     def write(self, vals):
         slip_model = self.env["hr.payslip"].with_context(no_recalc_work_entries=True)
@@ -115,7 +117,7 @@ class HrScheduledTransaction(models.Model):
                 to_recompute_data.append((rec.employee_id.id, reference_date))
                 if before_date != reference_date:
                     to_recompute_data.append((rec.employee_id.id, rec.date))
-        res = super(HrScheduledTransaction, self).write(vals)
+        res = super().write(vals)
         for employee_id, reference_date in to_recompute_data:
             slip_model._recalc_payslip_change(employee_id, reference_date)
         return res
@@ -128,7 +130,7 @@ class HrScheduledTransaction(models.Model):
             to_recompute_data.append((rec.employee_id.id, rec.date))
             for current_input in rec.payslip_input_ids:
                 related_inputs |= current_input
-        res = super(HrScheduledTransaction, self).unlink()
+        res = super().unlink()
         if related_inputs:
             related_inputs.unlink()
         for employee_id, reference_date in to_recompute_data:

@@ -33,55 +33,50 @@ class HrPayslipInputType(models.Model):
         """
         return new_rule_data
 
-    @api.model
-    def create(self, vals):
-        rec = super(HrPayslipInputType, self).create(vals)
+    @api.model_create_multi
+    def create(self, values):
+        records = super().create(values)
         rule_model = self.env["hr.salary.rule"]
         struct_model = self.env["hr.payroll.structure"]
-        current_structs = rec.struct_ids
-        if not current_structs and rec.country_id:
-            current_structs = struct_model.search(
-                [
-                    ("country_id", "=", rec.country_id.id),
-                ]
-            )
-        for struct in current_structs:
-            new_rule_data = {
-                "name": rec.display_name,
-                "category_id": rec.category_id.id,
-                "code": rec.code,
-                "struct_id": struct.id,
-                "condition_select": "python",
-                "condition_python": "result = inputs.{code} and inputs.{code}.amount or 0".format(  # noqa: disable=B950
-                    code=rec.code
-                ),
-                "amount_select": "code",
-                "amount_python_compute": "result = inputs.%(code)s and inputs.%(code)s.amount or 0"  # noqa: disable=B950
-                % {"code": rec.code},
-                "input_type_id": rec.id,
-                "account_credit": rec.account_credit_id.id,
-                "account_debit": rec.account_debit_id.id,
-                "analytic_account_id": rec.analytic_account_id.id,
-                "not_computed_in_net": rec.not_computed_in_net,
-                "sequence": rec.sequence,
-            }
-            new_rule_data = self._hook_new_rule_data(new_rule_data)
-            rule_model.create(new_rule_data)
-        return rec
+        for rec in records:
+            current_structs = rec.struct_ids
+            if not current_structs and rec.country_id:
+                current_structs = struct_model.search(
+                    [
+                        ("country_id", "=", rec.country_id.id),
+                    ]
+                )
+            for struct in current_structs:
+                new_rule_data = {
+                    "name": rec.display_name,
+                    "category_id": rec.category_id.id,
+                    "code": rec.code,
+                    "struct_id": struct.id,
+                    "condition_select": "python",
+                    "condition_python": f"result = inputs.{rec.code} and inputs.{rec.code}.amount or 0",  # noqa: B950, E501
+                    "amount_select": "code",
+                    "amount_python_compute": f"result = inputs.{rec.code} and inputs.{rec.code}.amount or 0",  # noqa: B950, E501
+                    "input_type_id": rec.id,
+                    "account_credit": rec.account_credit_id.id,
+                    "account_debit": rec.account_debit_id.id,
+                    "analytic_account_id": rec.analytic_account_id.id,
+                    "not_computed_in_net": rec.not_computed_in_net,
+                    "sequence": rec.sequence,
+                }
+                new_rule_data = self._hook_new_rule_data(new_rule_data)
+                rule_model.create(new_rule_data)
+        return records
 
     def write(self, values):
-        res = super(HrPayslipInputType, self).write(values)
+        res = super().write(values)
         for rec in self:
             for rule in self.rule_ids:
                 update_rule_data = {
                     "name": rec.display_name,
                     "category_id": rec.category_id.id,
                     "code": rec.code,
-                    "condition_python": "result = inputs.{code} and inputs.{code}.amount or 0".format(  # noqa: disable=B950
-                        code=rec.code
-                    ),
-                    "amount_python_compute": "result = inputs.%(code)s and inputs.%(code)s.amount or 0"  # noqa: disable=B950
-                    % {"code": rec.code},
+                    "condition_python": f"result = inputs.{rec.code} and inputs.{rec.code}.amount or 0",  # noqa: B950, E501
+                    "amount_python_compute": f"result = inputs.{rec.code} and inputs.{rec.code}.amount or 0",  # noqa: B950, E501
                     "account_credit": rec.account_credit_id.id,
                     "account_debit": rec.account_debit_id.id,
                     "analytic_account_id": rec.analytic_account_id.id,
@@ -163,7 +158,7 @@ class HrPayslipInput(models.Model):
                     line.transaction_ids.with_context(stop_recurtion=True).amount = abs(
                         values.get("amount")
                     )
-        return super(HrPayslipInput, self).write(values)
+        return super().write(values)
 
 
 class HrPayslip(models.Model):
@@ -197,17 +192,20 @@ class HrPayslip(models.Model):
                 input_types |= input_type
             for input_type in input_types:
                 current_input = payslip.input_line_ids.filtered(
-                    lambda x: x.input_type_id.id == input_type.id
+                    lambda x, input_type_id=input_type.id: x.input_type_id.id
+                    == input_type_id
                 )
                 current_st = scheduled_transactions.filtered(
-                    lambda x: x.payslip_input_type_id.id == input_type.id
+                    lambda x, input_type_id=input_type.id: x.payslip_input_type_id.id
+                    == input_type_id
                 )
                 amount = sum(
                     st.transaction_type == "input" and st.amount or st.amount * -1
                     for st in current_st
                 )
                 current_fi = fixed_inputs.filtered(
-                    lambda x: x.payslip_input_type_id.id == input_type.id
+                    lambda x, input_type_id=input_type.id: x.payslip_input_type_id.id
+                    == input_type_id
                 )
                 amount += sum(
                     fi.transaction_type == "input" and fi.amount or fi.amount * -1
@@ -230,7 +228,7 @@ class HrPayslip(models.Model):
                         payslip_input_model.new(data)
                     else:
                         payslip_input_model.create(data)
-        return super(HrPayslip, self).compute_sheet()
+        return super().compute_sheet()
 
     l10n_ec_count_transactions = fields.Integer(
         string="Count Scheduled Transactions",
