@@ -2,24 +2,35 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import fields
-from odoo.tests import Form
-from odoo.tests.common import TransactionCase
+from odoo.tests import Form, tagged
+
+from odoo.addons.account.tests.common import AccountTestInvoicingCommon
 
 
-class TestSaleRates(TransactionCase):
+@tagged("post_install", "-at_install")
+class TestSaleRates(AccountTestInvoicingCommon):
     @classmethod
-    def setUpClass(cls):
-        super().setUpClass()
+    def setUpClass(cls, chart_template_ref=None):
+        super().setUpClass(chart_template_ref=chart_template_ref)
+        cls.env = cls.env(
+            context=dict(
+                cls.env.context,
+                mail_create_nolog=True,
+                mail_create_nosubscribe=True,
+                mail_notrack=True,
+                no_reset_password=True,
+                tracking_disable=True,
+            )
+        )
         cls.partner = cls.env.ref("base.res_partner_3")
         cls.product = cls.env.ref("product.product_product_5")
         cls.product.invoice_policy = "order"
         cls.product_service = cls.env.ref("product.product_product_1")
-        cls.warehouse = cls.env.ref("stock.warehouse0")
-        cls.env["stock.quant"]._update_available_quantity(
-            cls.product, cls.warehouse.lot_stock_id, 100
-        )
 
-    def test_sale_rates_invoiced(self):
+    def test_01_sale_rates_invoiced(self):
+        self.env["stock.quant"]._update_available_quantity(
+            self.product, self.env.user._get_default_warehouse_id().lot_stock_id, 100
+        )
         sale_order_form = Form(self.env["sale.order"])
         sale_order_form.partner_id = self.partner
         with sale_order_form.order_line.new() as line_form:
@@ -98,7 +109,7 @@ class TestSaleRates(TransactionCase):
         """Do picking with only one move on the given date."""
         picking.action_confirm()
         picking.action_assign()
-        picking.move_lines.quantity_done = qty
+        picking.move_ids.quantity_done = qty
         res = picking.button_validate()
         if isinstance(res, dict) and res:
             backorder_wiz_id = res["res_id"]
@@ -109,13 +120,22 @@ class TestSaleRates(TransactionCase):
         return True
 
     def _make_picking_return(self, picking, quantity):
-        return_form = Form(
-            self.env["stock.return.picking"].with_context(
+        return_wizard = (
+            self.env["stock.return.picking"]
+            .with_context(
                 active_id=picking.id,
                 active_ids=picking.ids,
             )
+            .create(
+                {
+                    "location_id": picking.location_id.id,
+                    "picking_id": picking.id,
+                }
+            )
         )
-        return_form.picking_id = picking
+        return_wizard._onchange_picking_id()
+        return_form = Form(return_wizard)
+        # return_form.picking_id = picking
         for i in range(len(return_form.product_return_moves)):
             with return_form.product_return_moves.edit(i) as return_line:
                 return_line.quantity = quantity
