@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 15.0+e\n"
+"Project-Id-Version: Odoo Server 16.0+e\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -14,6 +14,7 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: website_sale_hide_price_contactus
+#. odoo-python
 #: code:addons/website_sale_hide_price_contactus/models/product_template.py:0
 #, python-format
 msgid "Can you give more information about this product %(product_name)s"
@@ -33,7 +34,7 @@ msgstr ""
 
 #. module: website_sale_hide_price_contactus
 #: model:ir.model,name:website_sale_hide_price_contactus.model_product_template
-msgid "Product Template"
+msgid "Product"
 msgstr ""
 
 #. module: website_sale_hide_price_contactus
