@@ -17,15 +17,15 @@ class ProductTemplate(models.Model):
         results_data = super()._search_render_results(
             fetch_fields, mapping, icon, limit
         )
-        for product, data in zip(self, results_data):
+        for product, data in zip(self, results_data, strict=True):
             if product.website_hide_price and product.website_published:
                 data.update(
                     {
-                        "price": "<a href='/contactus?name=%(contact_name)s&description=%(contact_description)s' target='_blank'><span>%(product_name)s</span></a>"  # noqa: B950
+                        "price": "<a href='/contactus?name=%(contact_name)s&description=%(contact_description)s' target='_blank'><span>%(product_name)s</span></a>"  # noqa: B950, E501, UP031
                         % {
                             "contact_name": product.display_name,
                             "contact_description": _(
-                                "Can you give more information about this product %(product_name)s"  # noqa: B950
+                                "Can you give more information about this product %(product_name)s"  # noqa: B950, E501
                             )
                             % {"product_name": product.display_name},
                             "product_name": product.website_hide_price_message or "",
