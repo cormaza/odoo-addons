@@ -6,7 +6,6 @@ from odoo import fields, models
 
 
 class UtmCampaign(models.Model):
-
     _name = "utm.campaign"
 
     active = fields.Boolean(string="Active?", default=True)
@@ -18,7 +17,6 @@ class UtmCampaign(models.Model):
 
 
 class UtmSource(models.Model):
-
     _inherit = "utm.source"
 
     active = fields.Boolean(string="Active?", default=True)
