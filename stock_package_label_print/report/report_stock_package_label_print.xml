@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="report_splp" name="Stock Package Label Print">
+        <t t-call="web.html_container">
+            <div class="header" />
+            <div class="article">
+                <t t-foreach="docs" t-as="d">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <img
+                                t-if="d.company_id.logo"
+                                t-att-src="image_data_uri(d.company_id.logo)"
+                                class="company-logo"
+                                style="max-height: 35px;"
+                            />
+                        </div>
+                    </div>
+                    <div class="row zero_min_height">
+                        <div class="col-xs-12">
+                            <div style="border-bottom: 1px solid black;" />
+                        </div>
+                    </div>
+                    <br />
+                    <t
+                        t-set="qty_package"
+                        t-value="[x for x in range(1,len(d.move_line_ids.mapped('result_package_id')) + 1)]"
+                    />
+                    <t t-if="not d.has_packages">
+                        <t t-set="qty_package" t-value="[1]" />
+                    </t>
+                    <t t-foreach="qty_package" t-as="qty_pack_number">
+                        <div class="container">
+                            <t t-if="d.origin">
+                                <div class="row">
+                                    ORDEN DE PEDIDO:
+                                        <b t-out="' ' + d.origin" />
+                            </div>
+                            </t>
+                            <t t-if="d.invoice_ids">
+                                <div class="row">
+                                    <t
+                                        t-set="invoice_names"
+                                        t-value="' / '.join(i.display_name for i in d.invoice_ids)"
+                                    />
+                                    <b t-out="invoice_names" />
+                                </div>
+                            </t>
+                            <t t-if="d.name">
+                                <div class="row">
+                                    NOTA DE ENVIO:
+                                        <b t-out="' ' + d.name" />
+                            </div>
+                            </t>
+                            <t t-if="d.partner_id">
+                                <div class="row" style="font-size:130%">
+                                        CLIENTE:
+                                            <b
+                                        style="font-size:130%"
+                                        t-out="' ' + d.partner_id.commercial_partner_id.name"
+                                    />
+                                </div>
+                            </t>
+                            <t t-if="d.partner_id.street"><div class="row"><b
+                                    >Dirección de Envío:</b><b
+                                        t-out="' ' + d.partner_id.street + (d.partner_id.street2 and (' ' + d.partner_id.street2)  or '')"
+                                    /></div></t>
+                            <t t-if="d.partner_id.vat">
+                                <div class="row">
+                                    <b>RUC/CI:</b>
+                                    <b t-out="' ' + d.partner_id.vat" />
+                                </div>
+                            </t>
+                            <t t-if="d.partner_id.phone or d.partner_id.mobile">
+                                <div class="row">
+                                    <b>TELEFONO(S):</b>
+                                    <t t-if="d.partner_id.phone">
+                                        <b t-out="d.partner_id.phone" />
+                                    </t>
+                                    <t
+                                        t-if="d.partner_id.phone and d.partner_id.mobile"
+                                    >
+                                        <b t-out="' // ' + d.partner_id.mobile" />
+                                    </t>
+                                    <t
+                                        t-if="not d.partner_id.phone and d.partner_id.mobile"
+                                    >
+                                        <b t-out="d.partner_id.mobile" />
+                                    </t>
+                                </div>
+                            </t>
+                            <t t-if="d.partner_id.state_id">
+                                <div class="row">
+                                    PROVINCIA:
+                                        <b t-out="' ' + d.partner_id.state_id.name" />
+                            </div>
+                            </t>
+                            <t t-if="d.partner_id.city_id or d.partner_id.city">
+                                <div class="row">
+                                    <b>
+                                        CIUDAD:
+                                        <t t-if="d.partner_id.city_id">
+                                            <b
+                                                t-out="' ' + d.partner_id.city_id.name"
+                                            />
+                                        </t>
+
+                                        <t t-elif="d.partner_id.city">
+                                            <b t-out="' ' + d.partner_id.city" />
+                                        </t>
+                                    </b>
+                                </div>
+                            </t>
+                            <t t-if="d.has_packages">
+                                <div class="row">
+                                    <t
+                                        t-set="qty_pack_str"
+                                        t-value="'PAQUETES: ' + str(qty_pack_number) + ' ' 'de ' + str(len(qty_package))"
+                                    />
+                                    <b t-out="qty_pack_str" />
+                                </div>
+                            </t>
+                        </div>
+                        <p style="page-break-before:always;"> </p>
+                    </t>
+                </t>
+            </div>
+        </t>
+    </template>
+
+
+    <record id="report_package_label" model="ir.actions.report">
+        <field name="name">Stock Package Label Print</field>
+        <field name="model">stock.picking</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">stock_package_label_print.report_splp</field>
+        <field name="report_file">stock_package_label_print.report_splp</field>
+        <field
+            name="print_report_name"
+        >'Package label for Picking - %s' % (object.name)</field>
+        <field name="paperformat_id" ref="label_10_x_10" />
+        <field name="binding_model_id" ref="stock.model_stock_picking" />
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

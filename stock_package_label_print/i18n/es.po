@@ -1,0 +1,73 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* stock_package_label_print
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-03-20 12:12+0000\n"
+"PO-Revision-Date: 2023-03-20 07:15-0500\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 3.2.2\n"
+
+#. module: stock_package_label_print
+#: model:ir.actions.report,print_report_name:stock_package_label_print.report_package_label
+msgid "'Package label for Picking - %s' % (object.name)"
+msgstr "'Etiqueta de paquetes para transferencia - %s' % (object.name)"
+
+#. module: stock_package_label_print
+#: model_terms:ir.ui.view,arch_db:stock_package_label_print.report_splp
+msgid "<b>Dirección de Envío:</b>"
+msgstr "<b>Dirección de Envío:</b>"
+
+#. module: stock_package_label_print
+#: model_terms:ir.ui.view,arch_db:stock_package_label_print.report_splp
+msgid "<b>RUC/CI:</b>"
+msgstr "<b>RUC/CI:</b>"
+
+#. module: stock_package_label_print
+#: model_terms:ir.ui.view,arch_db:stock_package_label_print.report_splp
+msgid "<b>TELEFONO(S):</b>"
+msgstr "<b>TELEFONO(S):</b>"
+
+#. module: stock_package_label_print
+#: model_terms:ir.ui.view,arch_db:stock_package_label_print.report_splp
+msgid "CIUDAD:"
+msgstr "CIUDAD:"
+
+#. module: stock_package_label_print
+#: model_terms:ir.ui.view,arch_db:stock_package_label_print.report_splp
+msgid "CLIENTE:"
+msgstr "CLIENTE:"
+
+#. module: stock_package_label_print
+#: model_terms:ir.ui.view,arch_db:stock_package_label_print.report_splp
+msgid "NOTA DE ENVIO:"
+msgstr "NOTA DE ENVIO:"
+
+#. module: stock_package_label_print
+#: model_terms:ir.ui.view,arch_db:stock_package_label_print.report_splp
+msgid "ORDEN DE PEDIDO:"
+msgstr "ORDEN DE PEDIDO:"
+
+#. module: stock_package_label_print
+#: model_terms:ir.ui.view,arch_db:stock_package_label_print.report_splp
+msgid "PROVINCIA:"
+msgstr "PROVINCIA:"
+
+#. module: stock_package_label_print
+#: model:ir.actions.report,name:stock_package_label_print.report_package_label
+msgid "Stock Package Label Print"
+msgstr "Impresión de Etiquetas de paquetes"
+
+#. module: stock_package_label_print
+#: model:ir.model,name:stock_package_label_print.model_report_stock_package_label_print_report_splp
+msgid "report.stock_package_label_print.report_splp"
+msgstr ""
