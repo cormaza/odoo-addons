@@ -13,6 +13,7 @@ class StockMove(models.Model):
     def _sync_anglo_saxon_values(self):
         self.ensure_one()
         am_model = self.env["account.move"]
+        aml_model = self.env["account.move.line"]
         if (
             self.invoice_line_ids
             and (self._is_out() or self._is_in())
@@ -47,12 +48,24 @@ class StockMove(models.Model):
                         move_date = self._context.get(
                             "force_period_date", fields.Date.context_today(self)
                         )
-                        credit_line = line.anglo_saxon_line_ids.filtered(
-                            lambda x: x.credit != 0
-                        ).read(load="_classic_write")[0]
-                        debit_line = line.anglo_saxon_line_ids.filtered(
-                            lambda x: x.debit != 0
-                        ).read(load="_classic_write")[0]
+                        credit_line = (
+                            line.anglo_saxon_line_ids.filtered(lambda x: x.credit != 0)
+                            and aml_model._convert_to_write(
+                                line.anglo_saxon_line_ids.filtered(
+                                    lambda x: x.credit != 0
+                                ).read()[0]
+                            )
+                            or {}
+                        )
+                        debit_line = (
+                            line.anglo_saxon_line_ids.filtered(lambda x: x.debit != 0)
+                            and aml_model._convert_to_write(
+                                line.anglo_saxon_line_ids.filtered(
+                                    lambda x: x.debit != 0
+                                ).read()[0]
+                            )
+                            or {}
+                        )
                         credit_line.update(
                             {
                                 "anglo_saxon_adjusted_line_id": credit_line.get(
