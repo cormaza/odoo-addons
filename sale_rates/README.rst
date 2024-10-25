@@ -24,8 +24,8 @@ Sale Rates
 
 Added two field on Sales Order, and filters related with this fields
 
--  Invoiced Rate
--  Delivered Rate
+- Invoiced Rate
+- Delivered Rate
 
 **Table of contents**
 
@@ -35,7 +35,7 @@ Added two field on Sales Order, and filters related with this fields
 Known issues / Roadmap
 ======================
 
--  Kit products, delivered is not computed correctly in odoo base
+- Kit products, delivered is not computed correctly in odoo base
 
 Bug Tracker
 ===========
