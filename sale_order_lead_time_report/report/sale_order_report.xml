@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <template
+        id="report_saleorder_document_inherit_lead_time"
+        inherit_id="sale.report_saleorder_document"
+    >
+        <xpath expr="//th[@name='th_quantity']" position="after">
+            <th name="th_customer_lead" class="text-end">Lead Time</th>
+        </xpath>
+
+        <xpath expr="//td[@name='td_quantity']" position="after">
+            <td name="td_customer_lead" class="text-end">
+                <span t-field="line.customer_lead" /> Days
+            </td>
+        </xpath>
+    </template>
+
+</odoo>
