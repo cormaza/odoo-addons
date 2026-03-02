@@ -15,7 +15,12 @@ class SaleOrder(models.Model):
             if not public_categs:
                 continue
 
-            category_names = set(public_categs.mapped("name"))
+            category_names = set()
+            for categ in public_categs:
+                root_categ = categ
+                while root_categ.parent_id:
+                    root_categ = root_categ.parent_id
+                category_names.add(root_categ.name)
 
             partner_categories_to_add = self.env["res.partner.category"]
 

@@ -7,14 +7,22 @@ class TestSaleOrderTagSync(TransactionCase):
         super().setUpClass()
         cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
 
-        # Create a public product category
-        cls.public_category = cls.env["product.public.category"].create(
+        # Create a root public product category
+        cls.root_public_category = cls.env["product.public.category"].create(
             {
-                "name": "Test Public Category",
+                "name": "Root Public Category",
             }
         )
 
-        # Create a product with the public category
+        # Create a child public product category
+        cls.public_category = cls.env["product.public.category"].create(
+            {
+                "name": "Test Public Category",
+                "parent_id": cls.root_public_category.id,
+            }
+        )
+
+        # Create a product with the child public category
         cls.product = cls.env["product.product"].create(
             {
                 "name": "Test Product",
@@ -88,7 +96,8 @@ class TestSaleOrderTagSync(TransactionCase):
         # Check that the partner now has the expected tags
         tag_names = self.partner.category_id.mapped("name")
 
-        self.assertIn("Test Public Category", tag_names)
+        self.assertIn("Root Public Category", tag_names)
+        self.assertNotIn("Test Public Category", tag_names)
         self.assertIn("Existing Public Category", tag_names)
 
         # Ensure the existing tag was reused, not duplicated
