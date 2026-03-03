@@ -4,8 +4,7 @@ from odoo import _, models
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
-    def action_confirm(self):
-        res = super().action_confirm()
+    def _sync_partner_category(self):
         for order in self:
             if not order.partner_id:
                 continue
@@ -52,4 +51,12 @@ class SaleOrder(models.Model):
                     )
                 )
 
+    def action_confirm(self):
+        res = super().action_confirm()
+        self._sync_partner_category()
+        return res
+
+    def action_quotation_send(self):
+        res = super().action_quotation_send()
+        self._sync_partner_category()
         return res
