@@ -5,6 +5,11 @@ class SaleOrder(models.Model):
     _inherit = "sale.order"
 
     def _sync_partner_category(self):
+        category_type = (
+            self.env["ir.config_parameter"]
+            .sudo()
+            .get_param("sale_partner_product_category.category_type", default="leaf")
+        )
         for order in self:
             if not order.partner_id:
                 continue
@@ -16,10 +21,13 @@ class SaleOrder(models.Model):
 
             category_names = set()
             for categ in public_categs:
-                root_categ = categ
-                while root_categ.parent_id:
-                    root_categ = root_categ.parent_id
-                category_names.add(root_categ.name)
+                if category_type == "root":
+                    root_categ = categ
+                    while root_categ.parent_id:
+                        root_categ = root_categ.parent_id
+                    category_names.add(root_categ.name)
+                else:
+                    category_names.add(categ.name)
 
             partner_categories_to_add = self.env["res.partner.category"]
 
