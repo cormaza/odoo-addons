@@ -1,6 +1,6 @@
 {
     "name": "Invoice Picking Anglo Saxon Sync",
-    "version": "16.0.1.0.0",
+    "version": "19.0.1.0.0",
     "summary": "Invoice Picking Anglo Saxon Sync",
     "category": "Accounting",
     "author": "Christopher Ormaza",
