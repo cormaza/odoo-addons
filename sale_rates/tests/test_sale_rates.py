@@ -12,7 +12,7 @@ class TestSaleRates(AccountTestInvoicingCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.env.user.groups_id |= cls.env.ref("sales_team.group_sale_manager")
+        cls.env.user.group_ids |= cls.env.ref("sales_team.group_sale_manager")
         cls.env = cls.env(
             context=dict(
                 cls.env.context,
