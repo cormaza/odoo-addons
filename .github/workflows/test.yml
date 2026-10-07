@@ -39,13 +39,14 @@ jobs:
             # Excluded modules can never install or run on oca-ci images:
             # - hr_scheduled_transaction: needs Odoo Enterprise hr_payroll /
             #   hr_payroll_account
-            # - account_picking_anglo_saxon_sync: needs stock.move
-            #   valuation layers, removed from Odoo 19 Community (needs a
-            #   port redesign around the new valuation API)
-            exclude: "hr_scheduled_transaction,account_picking_anglo_saxon_sync"
+            # - account_picking_anglo_saxon_sync and sale_margin_quotation_sync:
+            #   need stock.move valuation layers, removed from Odoo 19
+            #   Community (both need a port redesign around the new
+            #   valuation API)
+            exclude: "hr_scheduled_transaction,account_picking_anglo_saxon_sync,sale_margin_quotation_sync"
             name: test with Odoo
           - container: ghcr.io/oca/oca-ci/py3.10-ocb19.0:latest
-            exclude: "hr_scheduled_transaction,account_picking_anglo_saxon_sync"
+            exclude: "hr_scheduled_transaction,account_picking_anglo_saxon_sync,sale_margin_quotation_sync"
             name: test with OCB
             makepot: "true"
     services:
