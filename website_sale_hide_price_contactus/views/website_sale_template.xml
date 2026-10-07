@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-    <template id="website_sale_hide_price.product" inherit_id="website_sale.product">
+    <template
+        id="website_sale_hide_price.product"
+        inherit_id="website_sale.cta_wrapper"
+    >
         <xpath expr="//a[@id='add_to_cart']" position="before">
             <t t-set="user_authenticated" t-value="user_id != website.user_id" />
             <t
