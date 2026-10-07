@@ -22,10 +22,23 @@ class TestSaleRates(AccountTestInvoicingCommon):
                 tracking_disable=True,
             )
         )
-        cls.partner = cls.env.ref("base.res_partner_3")
-        cls.product = cls.env.ref("product.product_product_5")
-        cls.product.invoice_policy = "order"
-        cls.product_service = cls.env.ref("product.product_product_1")
+        cls.partner = cls.env["res.partner"].create({"name": "Test partner"})
+        cls.product = cls.env["product.product"].create(
+            {
+                "name": "Test consumable product",
+                "type": "consu",
+                "invoice_policy": "order",
+                "list_price": 147.0,
+            }
+        )
+        cls.product_service = cls.env["product.product"].create(
+            {
+                "name": "Test service product",
+                "type": "service",
+                "invoice_policy": "order",
+                "list_price": 30.0,
+            }
+        )
 
     def test_01_sale_rates_invoiced(self):
         self.env["stock.quant"]._update_available_quantity(
