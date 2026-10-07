@@ -1,14 +1,15 @@
 from odoo import fields
-from odoo.tests.common import Form, TransactionCase
+from odoo.tests import Form
+from odoo.tests.common import TransactionCase
 
 
 class TestCalendarOptionalAttendees(TransactionCase):
     def setUp(self):
         super().setUp()
         self.CalendarEvent = self.env["calendar.event"]
-        self.partner_1 = self.env.ref("base.res_partner_1")
-        self.partner_2 = self.env.ref("base.res_partner_2")
-        self.partner_3 = self.env.ref("base.res_partner_3")
+        self.partner_1 = self.env["res.partner"].create({"name": "Partner 1"})
+        self.partner_2 = self.env["res.partner"].create({"name": "Partner 2"})
+        self.partner_3 = self.env["res.partner"].create({"name": "Partner 3"})
 
     def test_01_optional_attendees(self):
         new_event_form = Form(self.CalendarEvent)

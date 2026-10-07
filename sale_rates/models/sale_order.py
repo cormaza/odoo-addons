@@ -22,7 +22,6 @@ class SaleOrder(models.Model):
         "order_line.qty_delivered",
         "order_line.qty_delivered_method",
         "order_line.move_ids.state",
-        "order_line.move_ids.scrapped",
         "order_line.move_ids.product_uom_qty",
         "order_line.move_ids.product_uom",
     )

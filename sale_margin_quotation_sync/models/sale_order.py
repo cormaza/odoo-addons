@@ -8,7 +8,7 @@ class SaleOrderLine(models.Model):
         "product_id",
         "company_id",
         "currency_id",
-        "product_uom",
+        "product_uom_id",
         "move_ids",
         "move_ids.stock_valuation_layer_ids",
         "move_ids.picking_id.state",

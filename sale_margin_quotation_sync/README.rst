@@ -1,3 +1,5 @@
+.. warning:: Deprecated on 19.0 — Odoo removed stock valuation layers; module retained for 17.0 history only.
+
 ==========================
 Sale Margin Quotation Sync
 ==========================

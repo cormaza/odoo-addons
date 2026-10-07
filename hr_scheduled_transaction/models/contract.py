@@ -1,6 +1,6 @@
 from dateutil.relativedelta import relativedelta
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
 
 
@@ -44,18 +44,20 @@ class HrContractFixedInputs(models.Model):
     def _check_day_to_apply(self):
         for rec in self:
             if (rec.day_to_apply <= 0) or (rec.day_to_apply > 31):
-                raise UserError(
-                    _("Day to apply of fixed input %s must be between 1 or 31")
-                    % (rec.payslip_input_type_id.display_name)
+                msg = self.env._(
+                    "Day to apply of fixed input %s must be between 1 or 31"
                 )
+                raise UserError(msg % (rec.payslip_input_type_id.display_name))
 
     @api.constrains("amount")
     def _check_amount(self):
         for rec in self:
             if rec.amount <= 0:
+                msg = self.env._(
+                    "Amount of fixed input %(input_name)s must be bigger than zero"
+                )
                 raise UserError(
-                    _("Amount of fixed input %(input_name)s must be bigger than zero")
-                    % {"input_name": rec.payslip_input_type_id.display_name}
+                    msg % {"input_name": rec.payslip_input_type_id.display_name}
                 )
 
     @api.constrains(
@@ -67,13 +69,14 @@ class HrContractFixedInputs(models.Model):
         for rec in self:
             if rec.start_date:
                 if rec.start_date < rec.contract_id.date_start:
+                    msg = self.env._(
+                        "Start Date of Fixed Input "
+                        "%(input_name)s %(input_date_start)s "
+                        "must be after contract "
+                        "date start %(date_start)s"
+                    )
                     raise UserError(
-                        _(
-                            "Start Date of Fixed Input "
-                            "%(input_name)s %(input_date_start)s "
-                            "must be after contract "
-                            "date start %(date_start)s"
-                        )
+                        msg
                         % {
                             "input_name": rec.payslip_input_type_id.display_name,
                             "input_date_start": rec.start_date,
@@ -82,13 +85,14 @@ class HrContractFixedInputs(models.Model):
                     )
             if rec.end_date and rec.contract_id.date_end:
                 if rec.end_date > rec.contract_id.date_end:
+                    msg = self.env._(
+                        "End Date of Fixed Input "
+                        "%(input_name)s %(input_end_date)s "
+                        "must be before contract "
+                        "date end %(contract_date_end)s"
+                    )
                     raise UserError(
-                        _(
-                            "End Date of Fixed Input "
-                            "%(input_name)s %(input_end_date)s "
-                            "must be before contract "
-                            "date end %(contract_date_end)s"
-                        )
+                        msg
                         % {
                             "input_name": rec.payslip_input_type_id.display_name,
                             "input_end_date": rec.end_date,

@@ -10,8 +10,9 @@ from odoo.addons.account.tests.common import AccountTestInvoicingCommon
 @tagged("post_install", "-at_install")
 class TestSaleRates(AccountTestInvoicingCommon):
     @classmethod
-    def setUpClass(cls, chart_template_ref=None):
-        super().setUpClass(chart_template_ref=chart_template_ref)
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.env.user.group_ids |= cls.env.ref("sales_team.group_sale_manager")
         cls.env = cls.env(
             context=dict(
                 cls.env.context,
@@ -22,10 +23,24 @@ class TestSaleRates(AccountTestInvoicingCommon):
                 tracking_disable=True,
             )
         )
-        cls.partner = cls.env.ref("base.res_partner_3")
-        cls.product = cls.env.ref("product.product_product_5")
-        cls.product.invoice_policy = "order"
-        cls.product_service = cls.env.ref("product.product_product_1")
+        cls.partner = cls.env["res.partner"].create({"name": "Test partner"})
+        cls.product = cls.env["product.product"].create(
+            {
+                "name": "Test consumable product",
+                "type": "consu",
+                "is_storable": True,
+                "invoice_policy": "order",
+                "list_price": 147.0,
+            }
+        )
+        cls.product_service = cls.env["product.product"].create(
+            {
+                "name": "Test service product",
+                "type": "service",
+                "invoice_policy": "order",
+                "list_price": 30.0,
+            }
+        )
 
     def test_01_sale_rates_invoiced(self):
         self.env["stock.quant"]._update_available_quantity(
@@ -88,7 +103,6 @@ class TestSaleRates(AccountTestInvoicingCommon):
                     "journal_id": sale_order_1.invoice_ids.mapped("journal_id").id,
                     "date": fields.Date.today(),
                     "reason": "no reason",
-                    "refund_method": "refund",
                 }
             )
         )
@@ -109,7 +123,7 @@ class TestSaleRates(AccountTestInvoicingCommon):
         """Do picking with only one move on the given date."""
         picking.action_confirm()
         picking.action_assign()
-        picking.move_ids.quantity_done = qty
+        picking.move_ids.quantity = qty
         res = picking.button_validate()
         if isinstance(res, dict) and res:
             backorder_wiz_id = res["res_id"]
@@ -128,19 +142,17 @@ class TestSaleRates(AccountTestInvoicingCommon):
             )
             .create(
                 {
-                    "location_id": picking.location_id.id,
                     "picking_id": picking.id,
                 }
             )
         )
-        return_wizard._onchange_picking_id()
         return_form = Form(return_wizard)
         # return_form.picking_id = picking
         for i in range(len(return_form.product_return_moves)):
             with return_form.product_return_moves.edit(i) as return_line:
                 return_line.quantity = quantity
         return_wizard = return_form.save()
-        action = return_wizard.create_returns()
+        action = return_wizard.action_create_returns()
         return_picking = self.env["stock.picking"].browse(action.get("res_id"))
         self._do_picking(return_picking, fields.Datetime.now(), quantity)
         return return_picking

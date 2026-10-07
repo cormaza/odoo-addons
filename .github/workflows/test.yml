@@ -3,18 +3,18 @@ name: tests
 on:
   pull_request:
     branches:
-      - "16.0*"
+      - "19.0*"
   push:
     branches:
-      - "16.0"
-      - "16.0-ocabot-*"
+      - "19.0"
+      - "19.0-ocabot-*"
 
 jobs:
   unreleased-deps:
     runs-on: ubuntu-latest
     name: Detect unreleased dependencies
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - run: |
           for reqfile in requirements.txt test-requirements.txt ; do
               if [ -f ${reqfile} ] ; then
@@ -35,36 +35,76 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - container: ghcr.io/cormaza/py3.10-odoo16.0:latest
-            makepot: "true"
+          - container: ghcr.io/oca/oca-ci/py3.10-odoo19.0:latest
+            # Excluded modules can never install or run on oca-ci images:
+            # - hr_scheduled_transaction: needs Odoo Enterprise hr_payroll /
+            #   hr_payroll_account
+            # - account_picking_anglo_saxon_sync and sale_margin_quotation_sync:
+            #   need stock.move valuation layers, removed from Odoo 19
+            #   Community (both need a port redesign around the new
+            #   valuation API)
+            exclude: "hr_scheduled_transaction,account_picking_anglo_saxon_sync,sale_margin_quotation_sync"
             name: test with Odoo
-          - container: ghcr.io/cormaza/py3.10-ocb16.0:latest
+          - container: ghcr.io/oca/oca-ci/py3.10-ocb19.0:latest
+            exclude: "hr_scheduled_transaction,account_picking_anglo_saxon_sync,sale_margin_quotation_sync"
             name: test with OCB
             makepot: "true"
     services:
       postgres:
-        image: postgres:12.0
+        image: postgres:13
         env:
           POSTGRES_USER: odoo
           POSTGRES_PASSWORD: odoo
           POSTGRES_DB: odoo
         ports:
           - 5432:5432
+    env:
+      INCLUDE: "${{ matrix.include }}"
+      EXCLUDE: "${{ matrix.exclude }}"
+      OCA_ENABLE_CHECKLOG_ODOO: "1"
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           persist-credentials: false
       - name: Install addons and dependencies
-        run: oca_install_addons
+        # DEVIATION FROM OCA STANDARD (cormaza): oca_install_addons resolves
+        # dependencies of every module in the repo, including the ones listed
+        # in EXCLUDE that can never install on oca-ci images (their Odoo
+        # Enterprise dependencies, e.g. hr_payroll, are absent, and some OCA
+        # dependencies have no 19.0 release yet), which aborts the whole step.
+        # Temporarily move the excluded modules out of the addons path so only
+        # the tested subset is resolved, then restore them for the remaining
+        # steps (license checks, pot export) which expect the full tree.
+        run: |
+          STASH_DIR=/tmp/ci-excluded-addons
+          mkdir -p "$STASH_DIR"
+          for _mod in $(echo "${EXCLUDE}" | tr ',' ' '); do
+            if [ -d "$_mod" ]; then mv "$_mod" "$STASH_DIR/"; fi
+          done
+          oca_install_addons
+          for _mod in $(echo "${EXCLUDE}" | tr ',' ' '); do
+            if [ -d "$STASH_DIR/$_mod" ]; then mv "$STASH_DIR/$_mod" ./; fi
+          done
+      - name: Check licenses
+        # --select-exclude: skip CI-excluded modules whose dependencies are
+        # not installable on oca-ci images (same reason as above).
+        run: manifestoo -d . --select-exclude "${EXCLUDE}" check-licenses
       - name: Check development status
-        run: manifestoo -d . check-dev-status --default-dev-status=Beta
+        run: manifestoo -d . --select-exclude "${EXCLUDE}" check-dev-status --default-dev-status=Beta
       - name: Initialize test db
         run: oca_init_test_database
       - name: Run tests
         run: oca_run_tests
-      - uses: codecov/codecov-action@v3
+      - name: Upload screenshots from JS tests
+        uses: actions/upload-artifact@v4
+        if: ${{ failure() }}
         with:
-          token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
+          name: Screenshots of failed JS tests - ${{ matrix.name }}${{ join(matrix.include) }}
+          path: /tmp/odoo_tests/${{ env.PGDATABASE }}
+          if-no-files-found: ignore
+      - uses: codecov/codecov-action@v4
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
       - name: Update .pot files
         run: oca_export_and_push_pot https://x-access-token:${{ secrets.GIT_PUSH_TOKEN }}@github.com/${{ github.repository }}
         if: ${{ matrix.makepot == 'true' && github.event_name == 'push' && github.repository_owner == 'cormaza' }}

@@ -1,6 +1,6 @@
 from dateutil.relativedelta import relativedelta
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
 
 
@@ -116,9 +116,8 @@ class HrPayslipInputType(models.Model):
         for rec in self:
             for c in rec.code:
                 if c.isspace():
-                    raise UserError(
-                        _("Don't include spaces characters in code of %s") % (rec.code)
-                    )
+                    msg = self.env._("Don't include spaces characters in code of %s")
+                    raise UserError(msg % (rec.code))
 
 
 class HrSalaryRule(models.Model):
@@ -146,14 +145,12 @@ class HrPayslipInput(models.Model):
                 if len(line.transaction_ids) > 1 and abs(values.get("amount")) != abs(
                     line.amount
                 ):
-                    raise UserError(
-                        _(
-                            "You cannot modify this record because there's "
-                            "more than one transaction with this code %s, "
-                            "you must modify on scheduled transactions"
-                        )
-                        % line.input_type_id.code
+                    msg = self.env._(
+                        "You cannot modify this record because there's "
+                        "more than one transaction with this code %s, "
+                        "you must modify on scheduled transactions"
                     )
+                    raise UserError(msg % line.input_type_id.code)
                 if len(line.transaction_ids) == 1:
                     line.transaction_ids.with_context(stop_recurtion=True).amount = abs(
                         values.get("amount")

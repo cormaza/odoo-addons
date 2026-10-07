@@ -6,7 +6,7 @@
     "author": "Christopher Ormaza",
     "website": "https://github.com/cormaza/odoo-addons",
     "category": "Report",
-    "version": "16.0.1.0.0",
+    "version": "19.0.1.0.0",
     "depends": [
         "base",
         "stock",

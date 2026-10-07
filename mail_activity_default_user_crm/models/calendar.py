@@ -20,4 +20,4 @@ class CalendarEvent(models.Model):
                 partners |= user.partner_id
         return partners
 
-    partner_ids = fields.Many2many(default=_default_partners)
+    partner_ids = fields.Many2many(default=lambda self: self._default_partners())

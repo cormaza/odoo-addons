@@ -25,7 +25,7 @@
                         t-set="qty_package"
                         t-value="[x for x in range(1,len(d.move_line_ids.mapped('result_package_id')) + 1)]"
                     />
-                    <t t-if="not d.has_packages">
+                    <t t-if="not d.packages_count">
                         <t t-set="qty_package" t-value="[1]" />
                     </t>
                     <t t-foreach="qty_package" t-as="qty_pack_number">
@@ -55,15 +55,19 @@
                                 <div class="row" style="font-size:130%">
                                         CLIENTE:
                                             <b
-                                        style="font-size:130%"
-                                        t-out="' ' + d.partner_id.commercial_partner_id.name"
+                                    style="font-size:130%"
+                                    t-out="' ' + d.partner_id.commercial_partner_id.name"
+                                />
+                                </div>
+                            </t>
+                            <t t-if="d.partner_id.street">
+                                <div class="row">
+                                    <b>Dirección de Envío:</b>
+                                    <b
+                                        t-out="' ' + d.partner_id.street + (d.partner_id.street2 and (' ' + d.partner_id.street2)  or '')"
                                     />
                                 </div>
                             </t>
-                            <t t-if="d.partner_id.street"><div class="row"><b
-                                    >Dirección de Envío:</b><b
-                                        t-out="' ' + d.partner_id.street + (d.partner_id.street2 and (' ' + d.partner_id.street2)  or '')"
-                                    /></div></t>
                             <t t-if="d.partner_id.vat">
                                 <div class="row">
                                     <b>RUC/CI:</b>
@@ -99,18 +103,16 @@
                                     <b>
                                         CIUDAD:
                                         <t t-if="d.partner_id.city_id">
-                                            <b
-                                                t-out="' ' + d.partner_id.city_id.name"
-                                            />
-                                        </t>
+                                        <b t-out="' ' + d.partner_id.city_id.name" />
+                                    </t>
 
                                         <t t-elif="d.partner_id.city">
-                                            <b t-out="' ' + d.partner_id.city" />
-                                        </t>
+                                        <b t-out="' ' + d.partner_id.city" />
+                                    </t>
                                     </b>
                                 </div>
                             </t>
-                            <t t-if="d.has_packages">
+                            <t t-if="d.packages_count">
                                 <div class="row">
                                     <t
                                         t-set="qty_pack_str"
@@ -120,13 +122,12 @@
                                 </div>
                             </t>
                         </div>
-                        <p style="page-break-before:always;"> </p>
+                        <p style="page-break-before:always;" />
                     </t>
                 </t>
             </div>
         </t>
     </template>
-
 
     <record id="report_package_label" model="ir.actions.report">
         <field name="name">Stock Package Label Print</field>

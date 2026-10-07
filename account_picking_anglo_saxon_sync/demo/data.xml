@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record model="product.category" id="fifo_categ">
         <field name="name">FIFO Category</field>
         <field name="property_cost_method">fifo</field>
@@ -30,6 +29,4 @@
         <field name="list_price">60.0</field>
         <field name="type">product</field>
     </record>
-
-
 </odoo>

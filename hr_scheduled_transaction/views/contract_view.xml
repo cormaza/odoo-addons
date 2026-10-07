@@ -8,7 +8,7 @@
             <xpath expr="//page[@name='other']" position="after">
                 <page string="Fixed Inputs" name="fixed_inputs">
                     <field name="fixed_inputs_ids" nolabel="1">
-                        <tree editable="bottom">
+                        <list editable="bottom">
                             <field
                                 name="payslip_input_type_id"
                                 options="{'no_create': True}"
@@ -18,7 +18,7 @@
                             <field name="day_to_apply" />
                             <field name="amount" />
                             <field name="transaction_type" />
-                        </tree>
+                        </list>
                     </field>
                 </page>
             </xpath>
