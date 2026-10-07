@@ -1,5 +1,6 @@
 from odoo import fields
-from odoo.tests.common import Form, TransactionCase
+from odoo.tests import Form
+from odoo.tests.common import TransactionCase
 
 
 class TestCalendarOptionalAttendees(TransactionCase):
