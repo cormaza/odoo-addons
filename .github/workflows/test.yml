@@ -62,7 +62,24 @@ jobs:
         with:
           persist-credentials: false
       - name: Install addons and dependencies
-        run: oca_install_addons
+        # DEVIATION FROM OCA STANDARD (cormaza): oca_install_addons resolves
+        # dependencies of every module in the repo, including the ones listed
+        # in EXCLUDE that can never install on oca-ci images (their Odoo
+        # Enterprise dependencies, e.g. hr_payroll, are absent, and some OCA
+        # dependencies have no 19.0 release yet), which aborts the whole step.
+        # Temporarily move the excluded modules out of the addons path so only
+        # the tested subset is resolved, then restore them for the remaining
+        # steps (license checks, pot export) which expect the full tree.
+        run: |
+          STASH_DIR=/tmp/ci-excluded-addons
+          mkdir -p "$STASH_DIR"
+          for _mod in $(echo "${EXCLUDE}" | tr ',' ' '); do
+            if [ -d "$_mod" ]; then mv "$_mod" "$STASH_DIR/"; fi
+          done
+          oca_install_addons
+          for _mod in $(echo "${EXCLUDE}" | tr ',' ' '); do
+            if [ -d "$STASH_DIR/$_mod" ]; then mv "$STASH_DIR/$_mod" ./; fi
+          done
       - name: Check licenses
         run: manifestoo -d . check-licenses
       - name: Check development status
