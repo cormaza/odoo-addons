@@ -12,6 +12,7 @@ class TestSaleRates(AccountTestInvoicingCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        cls.env.user.groups_id |= cls.env.ref("sales_team.group_sale_manager")
         cls.env = cls.env(
             context=dict(
                 cls.env.context,
@@ -27,6 +28,7 @@ class TestSaleRates(AccountTestInvoicingCommon):
             {
                 "name": "Test consumable product",
                 "type": "consu",
+                "is_storable": True,
                 "invoice_policy": "order",
                 "list_price": 147.0,
             }
