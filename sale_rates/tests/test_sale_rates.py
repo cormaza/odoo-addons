@@ -152,7 +152,7 @@ class TestSaleRates(AccountTestInvoicingCommon):
             with return_form.product_return_moves.edit(i) as return_line:
                 return_line.quantity = quantity
         return_wizard = return_form.save()
-        action = return_wizard.create_returns()
+        action = return_wizard.action_create_returns()
         return_picking = self.env["stock.picking"].browse(action.get("res_id"))
         self._do_picking(return_picking, fields.Datetime.now(), quantity)
         return return_picking
