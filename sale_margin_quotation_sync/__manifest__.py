@@ -8,4 +8,5 @@
     "depends": ["sale_margin", "sale_stock_margin"],
     "data": [],
     "license": "AGPL-3",
+    "installable": False,
 }
