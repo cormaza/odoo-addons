@@ -25,7 +25,7 @@
                         t-set="qty_package"
                         t-value="[x for x in range(1,len(d.move_line_ids.mapped('result_package_id')) + 1)]"
                     />
-                    <t t-if="not d.has_packages">
+                    <t t-if="not d.packages_count">
                         <t t-set="qty_package" t-value="[1]" />
                     </t>
                     <t t-foreach="qty_package" t-as="qty_pack_number">
@@ -110,7 +110,7 @@
                                     </b>
                                 </div>
                             </t>
-                            <t t-if="d.has_packages">
+                            <t t-if="d.packages_count">
                                 <div class="row">
                                     <t
                                         t-set="qty_pack_str"
