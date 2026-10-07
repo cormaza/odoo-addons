@@ -1,4 +1,4 @@
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
 
 _FIELDS_TO_CHECK = [
@@ -52,7 +52,7 @@ class HrScheduledTransaction(models.Model):
     def _check_amount(self):
         for rec in self:
             if rec.amount <= 0:
-                raise UserError(_("Amount must be bigger than zero"))
+                raise UserError(self.env._("Amount must be bigger than zero"))
 
     @api.depends("amount", "payslip_input_type_id.category_id.code")
     def _compute_type_transaction(self):

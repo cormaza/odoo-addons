@@ -1,4 +1,4 @@
-from odoo import _, fields, models
+from odoo import fields, models
 from odoo.models import MAGIC_COLUMNS
 from odoo.tools import float_is_zero
 
@@ -99,6 +99,7 @@ class StockMove(models.Model):
                                 credit_line.pop(column)
                             if column in debit_line:
                                 debit_line.pop(column)
+                        msg = self.env._("COGS Alignment - %s")
                         move_data = {
                             "journal_id": journal_id,
                             "anglo_saxon_adjusted_move_id": line.move_id.id,
@@ -107,8 +108,7 @@ class StockMove(models.Model):
                                 (0, 0, credit_line),
                                 (0, 0, debit_line),
                             ],
-                            "ref": _("COGS Alignment - %s")
-                            % (line.move_id.display_name),
+                            "ref": msg % (line.move_id.display_name),
                             "stock_move_id": self.id,
                             "stock_valuation_layer_ids": [
                                 (6, None, [self.stock_valuation_layer_ids.ids[0]])
