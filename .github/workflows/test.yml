@@ -36,12 +36,16 @@ jobs:
       matrix:
         include:
           - container: ghcr.io/oca/oca-ci/py3.10-odoo19.0:latest
-            # hr_scheduled_transaction needs Odoo Enterprise hr_payroll /
-            # hr_payroll_account, which oca-ci images do not have.
-            exclude: "hr_scheduled_transaction"
+            # Excluded modules can never install or run on oca-ci images:
+            # - hr_scheduled_transaction: needs Odoo Enterprise hr_payroll /
+            #   hr_payroll_account
+            # - account_picking_anglo_saxon_sync: needs stock.move
+            #   valuation layers, removed from Odoo 19 Community (needs a
+            #   port redesign around the new valuation API)
+            exclude: "hr_scheduled_transaction,account_picking_anglo_saxon_sync"
             name: test with Odoo
           - container: ghcr.io/oca/oca-ci/py3.10-ocb19.0:latest
-            exclude: "hr_scheduled_transaction"
+            exclude: "hr_scheduled_transaction,account_picking_anglo_saxon_sync"
             name: test with OCB
             makepot: "true"
     services:
