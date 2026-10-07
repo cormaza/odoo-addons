@@ -142,7 +142,6 @@ class TestSaleRates(AccountTestInvoicingCommon):
             )
             .create(
                 {
-                    "location_id": picking.location_id.id,
                     "picking_id": picking.id,
                 }
             )
