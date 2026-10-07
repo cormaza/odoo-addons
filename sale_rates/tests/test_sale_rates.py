@@ -103,7 +103,6 @@ class TestSaleRates(AccountTestInvoicingCommon):
                     "journal_id": sale_order_1.invoice_ids.mapped("journal_id").id,
                     "date": fields.Date.today(),
                     "reason": "no reason",
-                    "refund_method": "refund",
                 }
             )
         )
@@ -124,7 +123,7 @@ class TestSaleRates(AccountTestInvoicingCommon):
         """Do picking with only one move on the given date."""
         picking.action_confirm()
         picking.action_assign()
-        picking.move_ids.quantity_done = qty
+        picking.move_ids.quantity = qty
         res = picking.button_validate()
         if isinstance(res, dict) and res:
             backorder_wiz_id = res["res_id"]
