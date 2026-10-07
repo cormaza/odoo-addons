@@ -146,7 +146,6 @@ class TestSaleRates(AccountTestInvoicingCommon):
                 }
             )
         )
-        return_wizard._onchange_picking_id()
         return_form = Form(return_wizard)
         # return_form.picking_id = picking
         for i in range(len(return_form.product_return_moves)):
