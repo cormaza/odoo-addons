@@ -74,22 +74,10 @@
                                     <b t-out="' ' + d.partner_id.vat" />
                                 </div>
                             </t>
-                            <t t-if="d.partner_id.phone or d.partner_id.mobile">
+                            <t t-if="d.partner_id.phone">
                                 <div class="row">
                                     <b>TELEFONO(S):</b>
-                                    <t t-if="d.partner_id.phone">
-                                        <b t-out="d.partner_id.phone" />
-                                    </t>
-                                    <t
-                                        t-if="d.partner_id.phone and d.partner_id.mobile"
-                                    >
-                                        <b t-out="' // ' + d.partner_id.mobile" />
-                                    </t>
-                                    <t
-                                        t-if="not d.partner_id.phone and d.partner_id.mobile"
-                                    >
-                                        <b t-out="d.partner_id.mobile" />
-                                    </t>
+                                    <b t-out="d.partner_id.phone" />
                                 </div>
                             </t>
                             <t t-if="d.partner_id.state_id">
