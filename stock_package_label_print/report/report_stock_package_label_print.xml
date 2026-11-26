@@ -51,7 +51,7 @@
                                         <b t-out="' ' + d.name" />
                             </div>
                             </t>
-                            <t t-if="d.partner_id">
+                            <t t-if="d.partner_id.commercial_partner_id.name">
                                 <div class="row" style="font-size:130%">
                                         CLIENTE:
                                             <b
